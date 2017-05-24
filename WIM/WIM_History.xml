@@ -1,6 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
 	<Script file="WIM_History.lua"/> 
+	<Script file="localization.lua"/>
+	<Script file="localization.ru.lua"/>
+	<Script file="localization.cn.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.kr.lua"/>
+	<Script file="localization.tw.lua"/>
 
 	<Button name="WIM_HistoryUsersButtonTemplate" virtual="true">
 		<Size>
@@ -126,7 +133,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM History Viewer">
+						<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_HISTORY_VIEWER">
 							<Anchors>
 								<Anchor point="CENTER">
 									<Offset>
@@ -203,7 +210,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Users">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_USERS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -414,7 +421,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Filters">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_FILTERS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -558,7 +565,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="Messages">
+								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_MESSAGES">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>

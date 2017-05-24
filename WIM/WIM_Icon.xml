@@ -1,5 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
+	<Script file="localization.lua"/>
+	<Script file="localization.ru.lua"/>
+	<Script file="localization.cn.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.kr.lua"/>
+	<Script file="localization.tw.lua"/>
+
 	<Frame name="WIM_IconFrame" parent="UIParent" enableMouse="true" hidden="false" frameStrata="LOW"  clampedToScreen="true" movable="true">
 		<Size>
 			<AbsDimension x="32" y="32"/>
@@ -164,7 +172,7 @@
 					</FontHeight>
 					<Color r="0.5" g="0.5" b="0.5" />
 				</FontString>
-				<FontString name="$parentLine1" inherits="GameFontNormal" text="Conversations Menu">
+				<FontString name="$parentLine1" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_CONVERSATIONS_MENU">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -177,7 +185,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="Left-Click">
+				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_L_C">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine1" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -191,7 +199,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine2" inherits="GameFontNormal" text="Show New Messages">
+				<FontString name="$parentLine2" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_NEW_MESSAGES">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -204,7 +212,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="Right-Click">
+				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_R_C">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine2" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -218,7 +226,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM Options">
+				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_WIMOPTIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -351,7 +359,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString inherits="GameFontNormalSmall" text="Conversations">
+				<FontString inherits="GameFontNormalSmall" text="WIM_LOCALIZED_TEXT_CONVERSATIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>

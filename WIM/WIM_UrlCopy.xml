@@ -1,5 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
+	<Script file="localization.lua"/>
+	<Script file="localization.ru.lua"/>
+	<Script file="localization.cn.lua"/>
+	<Script file="localization.de.lua"/>
+	<Script file="localization.fr.lua"/>
+	<Script file="localization.kr.lua"/>
+	<Script file="localization.tw.lua"/>
+
 <Frame name="WIM_urlCopy" movable="true" enableMouse="true" toplevel="true" frameStrata="DIALOG" parent="UIParent" hidden="true">
 		<Size>
 			<AbsDimension x="400" y="20"/> 
@@ -25,7 +33,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString name="$parentTitleBar" inherits="GameFontNormal" text="Copy URL">
+				<FontString name="$parentTitleBar" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_COPY_URL">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>

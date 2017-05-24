@@ -659,12 +659,12 @@ function WIM_Icon_DropDown_Update()
 	if(tCount == 0) then
 		info = { };
 		info.justifyH = "LEFT"
-		info.text = " - None -";
+		info.text = WIM_LOCALIZED_TEXT_NONE;
 		info.notClickable = 1;
 		info.notCheckable = 1;
 		getglobal("WIM_ConversationMenuTellButton1Close"):Hide();
 		getglobal("WIM_ConversationMenuTellButton1"):Disable();
-		getglobal("WIM_ConversationMenuTellButton1"):SetText("|cffffffff - None -");
+		getglobal("WIM_ConversationMenuTellButton1"):SetText("|cffffffff"..WIM_LOCALIZED_TEXT_NONE);
 		getglobal("WIM_ConversationMenuTellButton1"):Show();
 	else
 		if(WIM_Data.sortAlpha) then
@@ -922,27 +922,27 @@ function WIM_LoadShortcutFrame()
 		{
 			icon = "Interface\\Icons\\Ability_Hunter_AimedShot",
 			cmd		= "target",
-			tooltip = "Target"
+			tooltip = WIM_LOCALIZED_TEXT_TARGET
 		},
 		{
 			icon = "Interface\\Icons\\Spell_Holy_BlessingOfStrength",
 			cmd		= "invite",
-			tooltip = "Invite"
+			tooltip = WIM_LOCALIZED_TEXT_INVITE
 		},
 		{
 			icon = "Interface\\Icons\\INV_Misc_Bag_10_Blue",
 			cmd		= "trade",
-			tooltip = "Trade"
+			tooltip = WIM_LOCALIZED_TEXT_TRADE
 		},
 		{
 			icon = "Interface\\Icons\\INV_Helmet_44",
 			cmd		= "inspect",
-			tooltip = "Inspect"
+			tooltip = WIM_LOCALIZED_TEXT_INSPECT
 		},
 		{
 			icon = "Interface\\Icons\\Ability_Physical_Taunt",
 			cmd		= "ignore",
-			tooltip = "Ignore"
+			tooltip = WIM_LOCALIZED_TEXT_IGNORE
 		},
 	};
 	for i=1,5 do
