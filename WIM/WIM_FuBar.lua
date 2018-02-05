@@ -138,5 +138,9 @@ function WIM_FuBar:SetFontSize(size)
 end
 
 function WIM_FuBar:UpdateText()
-	self:SetText(WIM_FUBAR_TEXT);
+	if (self:IsTextShown()) then 
+		self:SetText(WIM_FUBAR_TEXT) 
+	else 
+		self:HideText()
+	end
 end

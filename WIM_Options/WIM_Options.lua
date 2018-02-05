@@ -82,6 +82,7 @@ function WIM_Options_OnShow()
 		WIM_OptionsTabbedFrameWindowTimeOutFriend:SetChecked(WIM_Data.msgTimeOut.friends);
 		WIM_OptionsTabbedFrameWindowTimeOutNonFriend:SetChecked(WIM_Data.msgTimeOut.other);
 		
+		
 	--[ Filter Settings
 		WIM_OptionsTabbedFrameFilterAliasEnabled:SetChecked(WIM_Data.enableAlias);
 		WIM_OptionsTabbedFrameFilterFilteringEnabled:SetChecked(WIM_Data.enableFilter);
@@ -111,6 +112,12 @@ function WIM_Options_OnShow()
 	if(not WIM_Options_AlreadyShown) then
 		WIM_Options_General_Click();
 		WIM_Options_AlreadyShown = true;
+	end
+	
+	if(WIM_Data.tabMode == true) then 
+		WIM_OptionsTabbedFrameWindowWindowCascade:Disable(); 
+	else
+		WIM_OptionsTabbedFrameWindowWindowCascade:Enable(); 
 	end
 end
 
@@ -860,6 +867,49 @@ function WIM_Options_WindowCascadeClicked()
 	end
 end
 
+function WIM_Options_WindowMode_OnShow()
+	UIDropDownMenu_Initialize(this, WIM_Options_WindowMode_Initialize);
+	if(WIM_Data.tabMode) then
+		UIDropDownMenu_SetSelectedValue(this, 2);
+	else
+		UIDropDownMenu_SetSelectedValue(this, 1);
+	end
+	UIDropDownMenu_SetWidth(200, WIM_OptionsTabbedFrameWindowWindowMode);
+end
+
+function WIM_Options_WindowModeClick()
+	if(this.value == 1) then
+		WIM_Data.tabMode = false;
+		WIM_OptionsTabbedFrameWindowWindowCascade:Enable();
+	else
+		WIM_Data.tabMode = true;
+		WIM_OptionsTabbedFrameWindowWindowCascade:Disable();
+	end
+	UIDropDownMenu_SetSelectedValue(WIM_OptionsTabbedFrameWindowWindowMode, this.value);
+	WIM_ToggleTabMode(WIM_Data.tabMode);
+end
+
+function WIM_Options_WindowMode_Initialize()
+	local info = {};
+	info = { };
+	info.text = WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_WIN;
+	info.value = 1;
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_WindowModeClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_TAB;
+	info.value = 2;
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_WindowModeClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+end
+
+
+
+
+
 function WIM_Options_CascadeDirection_OnShow()
 	UIDropDownMenu_Initialize(this, WIM_Options_CascadeDirection_Initialize);
 	UIDropDownMenu_SetSelectedValue(this, WIM_Data.winCascade.direction);
@@ -1049,52 +1099,6 @@ end
 function WIM_Options_TimeOutNonFriendMenuClick()
 	WIM_Data.msgTimeOut.oTO = this.value;
 	UIDropDownMenu_SetSelectedValue(WIM_OptionsTabbedFrameWindowTimeOutNonFriendMenu, WIM_Data.msgTimeOut.oTO);
-end
-
-
-
-function WIM_Help_Description_Click()
-	PanelTemplates_SelectTab(WIM_HelpTab1);
-	PanelTemplates_DeselectTab(WIM_HelpTab2);
-	PanelTemplates_DeselectTab(WIM_HelpTab3);
-	PanelTemplates_DeselectTab(WIM_HelpTabCredits);
-	
-	WIM_HelpScrollFrameScrollChildText:SetText(WIM_DESCRIPTION);
-	WIM_HelpScrollFrameScrollBar:SetValue(0);
-	WIM_HelpScrollFrame:UpdateScrollChildRect();
-end
-
-function WIM_Help_ChangeLog_Click()
-	PanelTemplates_SelectTab(WIM_HelpTab2);
-	PanelTemplates_DeselectTab(WIM_HelpTab1);
-	PanelTemplates_DeselectTab(WIM_HelpTab3);
-	PanelTemplates_DeselectTab(WIM_HelpTabCredits);
-	
-	WIM_HelpScrollFrameScrollChildText:SetText(WIM_CHANGE_LOG);
-	WIM_HelpScrollFrameScrollBar:SetValue(0);
-	WIM_HelpScrollFrame:UpdateScrollChildRect();
-end
-
-function WIM_Help_DidYouKnow_Click()
-	PanelTemplates_SelectTab(WIM_HelpTab3);
-	PanelTemplates_DeselectTab(WIM_HelpTab1);
-	PanelTemplates_DeselectTab(WIM_HelpTab2);
-	PanelTemplates_DeselectTab(WIM_HelpTabCredits);
-	
-	WIM_HelpScrollFrameScrollChildText:SetText(WIM_DIDYOUKNOW);
-	WIM_HelpScrollFrameScrollBar:SetValue(0);
-	WIM_HelpScrollFrame:UpdateScrollChildRect();
-end
-
-function WIM_Help_Credits_Click()
-	PanelTemplates_SelectTab(WIM_HelpTabCredits);
-	PanelTemplates_DeselectTab(WIM_HelpTab1);
-	PanelTemplates_DeselectTab(WIM_HelpTab2);
-	PanelTemplates_DeselectTab(WIM_HelpTab3);
-	
-	WIM_HelpScrollFrameScrollChildText:SetText(WIM_CREDITS);
-	WIM_HelpScrollFrameScrollBar:SetValue(0);
-	WIM_HelpScrollFrame:UpdateScrollChildRect();
 end
 
 function WIM_Options_ShortCutMenuDropDown()

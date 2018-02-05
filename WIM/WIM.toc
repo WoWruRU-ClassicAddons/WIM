@@ -1,22 +1,22 @@
 ## Interface: 11200
 ## Title: WIM
 ## Author: Pazza (Bronzebeard)
-## Version: 1.5.10
+## Version: 2.0.9
 ## Notes: Give whispers an instant messenger feel.
 ## Notes-ruRU: Улучшенное окно личных сообщений.
 ## eMail: johnlangone@gmail.com
 ## DefaultState: Enabled
-## OptionalDeps: Titan, AtlasLoot, AllInOneInventory, EngInventory, LootLink, FuBar, ItemSync
+## OptionalDeps: Titan, AtlasLoot, AllInOneInventory, EngInventory, LootLink, FuBar, ItemSync, AdvancedTradeSkillWindow
 ## SavedVariables: WIM_Data, WIM_Alias, WIM_Filters, WIM_History, WIM_FuBarDB
 libs\AceLibrary\AceLibrary.lua
 libs\AceOO-2.0\AceOO-2.0.lua
 libs\AceDB-2.0\AceDB-2.0.lua
 libs\Tablet-2.0\Tablet-2.0.lua
 libs\FuBarPlugin-2.0\FuBarPlugin-2.0.lua
+WIMTemplates.xml
 WIM.xml
 WIM_UrlCopy.xml
 WIM_Icon.xml
-WIM_Options.xml
 WIM_History.xml
 WIM_Titan.xml
 WIM_FuBar.lua

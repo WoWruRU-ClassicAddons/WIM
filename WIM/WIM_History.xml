@@ -2,100 +2,12 @@
 
 	<Script file="WIM_History.lua"/> 
 
-	<Button name="WIM_HistoryUsersButtonTemplate" virtual="true">
-		<Size>
-			<AbsDimension x="120" y="16"/>
-		</Size>
-		<Layers>
-			<Layer level="BORDER">
-				<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="120" y="14"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="10" y="-3"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-			</OnLoad>
-			<OnClick>
-				WIM_HistoryView_NameClick();
-				WIM_HistoryViewNameScrollBar_Update();
-				PlaySound("igMainMenuOptionCheckBoxOn");
-			</OnClick>
-		</Scripts>
-		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
-			<Size>
-				<AbsDimension x="118" y="16"/>
-			</Size>
-			<Anchors>
-				<Anchor point="TOP">
-					<Offset>
-						<AbsDimension x="5" y="-2"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
-		</HighlightTexture>
-	</Button>
-	
-	<Button name="WIM_HistoryFiltersButtonTemplate" virtual="true">
-		<Size>
-			<AbsDimension x="120" y="16"/>
-		</Size>
-		<Layers>
-			<Layer level="BORDER">
-				<FontString name="$parentName" inherits="GameFontNormalSmall" justifyH="LEFT">
-					<Size>
-						<AbsDimension x="120" y="14"/>
-					</Size>
-					<Anchors>
-						<Anchor point="TOPLEFT">
-							<Offset>
-								<AbsDimension x="10" y="-3"/>
-							</Offset>
-						</Anchor>
-					</Anchors>
-				</FontString>
-			</Layer>
-		</Layers>
-		<Scripts>
-			<OnLoad>
-				this:RegisterForClicks("LeftButtonUp", "RightButtonUp");
-			</OnLoad>
-			<OnClick>
-				WIM_HistoryView_FilterClick();
-				WIM_HistoryViewFiltersScrollBar_Update();
-				PlaySound("igMainMenuOptionCheckBoxOn");
-			</OnClick>
-		</Scripts>
-		<HighlightTexture file="Interface\QuestFrame\UI-QuestTitleHighlight" alphaMode="ADD">
-			<Size>
-				<AbsDimension x="118" y="16"/>
-			</Size>
-			<Anchors>
-				<Anchor point="TOP">
-					<Offset>
-						<AbsDimension x="5" y="-2"/>
-					</Offset>
-				</Anchor>
-			</Anchors>
-		</HighlightTexture>
-	</Button>
-
 	<Frame name="WIM_HistoryFrame" movable="true" alpha="1" enableMouse="true" toplevel="true" frameStrata="DIALOG" parent="UIParent" hidden="true"  clampedToScreen="true">
 		<Size>
 			<AbsDimension x="600" y="500" />
 		</Size>
 		<Anchors>
-			<Anchor point="CENTER" relativeTo="WIM_Options">
+			<Anchor point="CENTER">
 				<Offset>
 					<AbsDimension x="0" y="0" />
 				</Offset>

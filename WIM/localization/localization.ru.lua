@@ -9,6 +9,8 @@ if GetLocale() == "ruRU" then
 	WIM_LOCALIZED_CANCEL						= "Отмена"
 	WIM_LOCALIZED_UNKNOWN						= "Неизвестно";
 	WIM_LOCALIZED_CLICK_TO_UPDATE				= "Нажмите, чтобы обновить...";
+		
+	WIM_LOCALIZED_NEW_VERSION					= "Доступна новая версия WIM!\nВы можете загрузить последнюю версию перейдя по:\n\n http://www.wimaddon.com";
 	
 	-- Strings From WIM.xml & WIM.lua --
 	WIM_LOCALIZED_PURGED_HISTORY 				= "Очищены {n} устаревшие сообщения из истории."
@@ -54,7 +56,7 @@ if GetLocale() == "ruRU" then
 	WIM_LOCALIZED_ICON_OPTIONS					= "Настройки WIM"
 	WIM_LOCALIZED_CONVERSATIONS					= "Беседы"		
 	WIM_LOCALIZED_ICON_WIM_TOOLS				= "Инструменты WIM";
-	
+
 	
 	-- Options Window --
 	WIM_LOCALIZED_OPTIONS_TITLE 				= "Настройки WIM"
@@ -84,7 +86,7 @@ if GetLocale() == "ruRU" then
 	
 	WIM_LOCALIZED_OPTIONS_TIMEOUT_FRIENDS		= "Закрывать друзей после:";
 	WIM_LOCALIZED_OPTIONS_TIMEOUT_OTHER			= "Закрывать не друзей после:";
-	
+		
 	WIM_LOCALIZED_OPTIONS_DISPLAY_TITLE 		= "Настройки отображения"
 	WIM_LOCALIZED_OPTIONS_DISPLAY_WISP_IN 		= "Входящие сообщения"
 	WIM_LOCALIZED_OPTIONS_DISPLAY_WISP_OUT 		= "Исходящие сообщения"
@@ -129,9 +131,11 @@ if GetLocale() == "ruRU" then
 	WIM_LOCALIZED_OPTIONS_GENERAL_TOOLTIP_INTCP = "WIM будет перехватывать любые слэш команды шепота и автоматически открывать новое окно сообщений. (Например: /ш или /шепнуть)."
 	WIM_LOCALIZED_OPTIONS_GENERAL_IGNOREARROW	= "Игнорировать клавиши со стрелками при вводе сообщений.";
 	WIM_LOCALIZED_OPTIONS_GENERAL_MENURCLICK	= "Показать 'Инструменты WIM' на миникарте <ПКМ>.";
-	
+
 	WIM_LOCALIZED_OPTIONS_WINDOWS_CASCADE_DIR 	= "Включить каскад. Направление:"
 	WIM_LOCALIZED_OPTIONS_WINDOWS_SET_LOCATION 	= "Задать позицию"
+	WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_WIN		= "Режим нескольких окон";
+	WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_TAB		= "Режим окна с вкладками";
 	
 	WIM_LOCALIZED_OPTIONS_FILTERS_ENABLE 		= "Включить ники"
 	WIM_LOCALIZED_OPTIONS_FILTERS_COMMENT 		= "Отображать как коммент"
@@ -207,13 +211,15 @@ if GetLocale() == "ruRU" then
 	WIM_LOCALIZED_WARLOCK 						= "Чернокнижник"
 	WIM_LOCALIZED_WARRIOR 						= "Воин"
 	
-	
+		
 	-- Help Window Tabs --
 	WIM_DESCRIPTION = [[
 		WIM (WoW Instant Messenger)
 		|cffffffff
 		WIM - улучшенное окно бесед. Он был разработан для того, чтобы не нагружать и не отвлекать вас (в рейде), когда вам кто-то пишет личные сообщения, выводя эти сообщения в отдельное окно для каждого пишущего вам человека. 
 		
+		Чтобы узнать больше о WIM, посетите |rhttp://www.wimaddon.com|cffffffff.
+
 		Не забудьте проверить окно настроек WIM, нажав на кнопку миникарты. 
 		|r
 		Используйте следующие команды:

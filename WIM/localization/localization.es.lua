@@ -1,7 +1,4 @@
-﻿  ----------------------------
-  -- Korean text by AlbertQ --
-  ----------------------------
-
+﻿
 if (GetLocale() == "esES") then
 	
 	-- Global Strings --

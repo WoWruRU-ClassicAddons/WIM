@@ -51,7 +51,7 @@ function WIM_AtlasLootItem_OnClick(arg1)
 		if ( WIM_EditBoxInFocus ) then
 			local color = strsub(getglobal("AtlasLootItem_"..this:GetID().."_Name"):GetText(), 1, 10);
 			local name = strsub(getglobal("AtlasLootItem_"..this:GetID().."_Name"):GetText(), 11);
-			WIM_EditBoxInFocus:Insert(color.."|Hitem:"..this.itemID..":0:0:0|h["..name.."]|h|r");
+			WIM_EditBoxInFocus:Insert(color.."|Hitem:"..this.itemID..":0:0:0:0:0:0:0|h["..name.."]|h|r");
 		end
 	end
 	WIM_AtlasLootItem_OnClick_orig(arg1);

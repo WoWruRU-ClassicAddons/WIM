@@ -2,19 +2,19 @@
 	<Binding name="WIMENABLE" header="WIMMOD">
 			WIM_Bindings_EnableWIM();
 	</Binding>
-	<Binding name="WIMHISTORY" header="WIMMOD">
+	<Binding name="WIMHISTORY">
 			WIM_HistoryFrame:Show();
 	</Binding>
-	<Binding name="WIMSHOWNEW" header="WIMMOD">
+	<Binding name="WIMSHOWNEW">
 			WIM_ShowNewMessages();
 	</Binding>
-	<Binding name="WIMTOGGLE" header="WIMMOD">
+	<Binding name="WIMTOGGLE">
 			WIM_ToggleWindow_Toggle();
 	</Binding>
-	<Binding name="WIMSHOWALL" header="WIMMOD">
+	<Binding name="WIMSHOWALL">
 			WIM_ShowAll();
 	</Binding>
-	<Binding name="WIMHIDEALL" header="WIMMOD">
+	<Binding name="WIMHIDEALL">
 			WIM_HideAll();
 	</Binding>
 </Bindings>

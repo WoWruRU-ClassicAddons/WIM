@@ -17,6 +17,8 @@
 		WIM_LOCALIZED_CANCEL						= "Cancel";
 		WIM_LOCALIZED_UNKNOWN						= "Unknown";
 		WIM_LOCALIZED_CLICK_TO_UPDATE				= "Click to update...";
+		
+		WIM_LOCALIZED_NEW_VERSION					= "A new version of WIM is available!\nYou can download the latest version by going to:\n\n http://www.wimaddon.com";
 
 	-- Strings From WIM.xml & WIM.lua --
 		WIM_LOCALIZED_PURGED_HISTORY 				= "Purged {n} out-dated messages from history.";
@@ -140,6 +142,8 @@
 		
 		WIM_LOCALIZED_OPTIONS_WINDOWS_CASCADE_DIR 	= "Enable cascading. Direction:";
 		WIM_LOCALIZED_OPTIONS_WINDOWS_SET_LOCATION 	= "Set Location";
+		WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_WIN		= "Multiple Window Mode";
+		WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_TAB		= "Tabbed Window Mode";
 		
 		WIM_LOCALIZED_OPTIONS_FILTERS_ENABLE 		= "Enable Aliasing";
 		WIM_LOCALIZED_OPTIONS_FILTERS_COMMENT 		= "Show as comment";
@@ -222,6 +226,8 @@ WIM (WoW Instant Messenger)
 |cffffffff
 WIM is exactly what its called; an instant messenger interface for your in game whispers. It was specially designed to not interfere with your busy interface (when in raids) but also to have the convenience of having a chat window for each user that you communicate with. 
 
+To learn more about WIM, visit |rhttp://www.wimaddon.com|cffffffff.
+
 Be sure to check your Key Bindings screen and look for WIM's available actions.
 |r
 Useful Slash Commands:
@@ -296,6 +302,12 @@ I would also like to thank everyone who has contributed on both ui.WorldOfWar.ne
 --[[ DEFINITION CHANGE LOG:
 		This logs purpose is to make it easier for translators to update 
 		their localization files between updates.
+		
+		Version 2.0.4
+		[+] - Added definition WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_WIN to Window Options.
+		[+] - Added definition WIM_LOCALIZED_OPTIONS_WINDOWS_MODE_TAB to Window Options.
+		[+] - Added definition WIM_LOCALIZED_NEW_VERSION to General section.
+		
 		
 		Version 1.5.1
 		[+] - Added definition WIM_LOCALIZED_FRIEND on shortcut bar.

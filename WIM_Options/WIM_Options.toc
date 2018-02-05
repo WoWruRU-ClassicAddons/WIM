@@ -1,0 +1,8 @@
+## Interface: 20003
+## Title: WIM_Options
+## Notes: WIM Options (Load on Demand)
+## Author: Pazza (Bronzebeard)
+## eMail: johnlangone@gmail.com
+## Dependencies: WIM
+## LoadOnDemand: 1
+WIM_Options.xml
