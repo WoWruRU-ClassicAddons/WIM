@@ -1,13 +1,5 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
-	<Script file="localization.lua"/>
-	<Script file="localization.ru.lua"/>
-	<Script file="localization.cn.lua"/>
-	<Script file="localization.de.lua"/>
-	<Script file="localization.fr.lua"/>
-	<Script file="localization.kr.lua"/>
-	<Script file="localization.tw.lua"/>
-
 	<Frame name="WIM_IconFrame" parent="UIParent" enableMouse="true" hidden="false" frameStrata="LOW"  clampedToScreen="true" movable="true">
 		<Size>
 			<AbsDimension x="32" y="32"/>
@@ -42,7 +34,12 @@
 							if(arg1 == "LeftButton") then
 								WIM_Icon_ToggleDropDown();
 							else
-								WIM_ShowNewMessages();
+								WIM_ConversationMenu:Hide();
+								if( WIM_Data.menuOnRightClick ) then
+									WIM_IconNavMenu_Toggle();
+								else
+									WIM_ShowNewMessages();
+								end
 							end
 						end
 					</OnClick>
@@ -172,7 +169,7 @@
 					</FontHeight>
 					<Color r="0.5" g="0.5" b="0.5" />
 				</FontString>
-				<FontString name="$parentLine1" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_CONVERSATIONS_MENU">
+				<FontString name="$parentLine1" inherits="GameFontNormal" text="WIM_LOCALIZED_ICON_CONVO_MENU">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentTitle" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -185,7 +182,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_L_C">
+				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_LEFT_CLICK">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine1" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -199,7 +196,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine2" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_NEW_MESSAGES">
+				<FontString name="$parentLine2" inherits="GameFontNormal" text="WIM_LOCALIZED_ICON_WIM_TOOLS">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine1" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -212,7 +209,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_R_C">
+				<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_RIGHT_CLICK">
 					<Anchors>
 						<Anchor point="TOP" relativeTo="$parentLine2" relativePoint="TOP" />
 						<Anchor point="RIGHT" relativeTo="$parent" relativePoint="RIGHT">
@@ -226,7 +223,7 @@
 					</FontHeight>
 					<Color r="1" g="1" b="1" />
 				</FontString>
-				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM_LOCALIZED_TEXT_WIMOPTIONS">
+				<FontString name="$parentLine3" inherits="GameFontNormal" text="WIM_LOCALIZED_ICON_OPTIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentLine2" relativePoint="BOTTOMLEFT">
 							<Offset>
@@ -359,7 +356,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString inherits="GameFontNormalSmall" text="WIM_LOCALIZED_TEXT_CONVERSATIONS">
+				<FontString inherits="GameFontNormalSmall" text="WIM_LOCALIZED_CONVERSATIONS">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -582,5 +579,12 @@
 		</Scripts>
 	</Frame>
 
+	<Frame name="WIM_IconNavMenu" inherits="UIDropDownMenuTemplate"  clampedToScreen="true">
+		<Scripts>
+			<OnLoad>
+				UIDropDownMenu_Initialize(this, WIM_IconNavMenu_Initialize, "MENU");
+			</OnLoad>
+		</Scripts>
+	</Frame>
 
 </Ui>

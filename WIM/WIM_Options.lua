@@ -5,6 +5,11 @@ WIM_Alias_Selected = "";
 WIM_Filter_Selected = "";
 WIM_History_Selected = "";
 
+-- Set localization variables for Ignore & Block
+WIM_LOCALIZE_FILTER_ACTION = {};
+WIM_LOCALIZE_FILTER_ACTION["Ignore"] = WIM_LOCALIZED_OPTIONS_FILTER_IGNORE;
+WIM_LOCALIZE_FILTER_ACTION["Block"] = WIM_LOCALIZED_OPTIONS_FILTER_BLOCK;
+
 function WIM_Options_OnShow()
 	local tRGB;
 	
@@ -12,7 +17,7 @@ function WIM_Options_OnShow()
 	
 	--[ Initialize Minimap Icon Frame 
 		WIM_OptionsMiniMapIconPosition:SetValue(WIM_Data.iconPosition);
-		WIM_OptionsMiniMapIconPositionTitle:SetText(WIM_LOCALIZED_TEXT_ICON_POSITION);
+		WIM_OptionsMiniMapIconPositionTitle:SetText(WIM_LOCALIZED_OPTIONS_ICON_POSISTION);
 		WIM_OptionsMiniMapEnabled:SetChecked(WIM_Data.showMiniMap);
 		WIM_OptionsMiniMapFreeMoving:SetChecked(WIM_Data.miniFreeMoving.enabled);
 	
@@ -43,11 +48,11 @@ function WIM_Options_OnShow()
 		
 		--[Sliders
 		WIM_OptionsDisplayFontSize:SetValue(WIM_Data.fontSize);
-		WIM_OptionsDisplayFontSizeTitle:SetText(WIM_LOCALIZED_TEXT_FRONT_SIZE);
+		WIM_OptionsDisplayFontSizeTitle:SetText(WIM_LOCALIZED_OPTIONS_FONT_SIZE);
 		WIM_OptionsDisplayWindowSize:SetValue(WIM_Data.windowSize * 100);
-		WIM_OptionsDisplayWindowSizeTitle:SetText(WIM_LOCALIZED_TEXT_WINDOW_SIZE);
+		WIM_OptionsDisplayWindowSizeTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_SCALE);
 		WIM_OptionsDisplayWindowAlpha:SetValue(WIM_Data.windowAlpha * 100);
-		WIM_OptionsDisplayWindowAlphaTitle:SetText(WIM_LOCALIZED_TEXT_TRANSPARENCY);
+		WIM_OptionsDisplayWindowAlphaTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_ALPHA);
 	--[ Initialize General Settings
 		WIM_OptionsTabbedFrameGeneralKeepFocus:SetChecked(WIM_Data.keepFocus);
 		WIM_OptionsTabbedFrameGeneralKeepFocusRested:SetChecked(WIM_Data.keepFocusRested);
@@ -65,13 +70,17 @@ function WIM_Options_OnShow()
 		WIM_OptionsTabbedFrameGeneralShowAFK:SetChecked(WIM_Data.showAFK);
 		WIM_OptionsTabbedFrameGeneralUseEscape:SetChecked(WIM_Data.useEscape);
 		WIM_OptionsTabbedFrameGeneralInterceptSlashWisp:SetChecked(WIM_Data.hookWispParse);
+		WIM_OptionsTabbedFrameGeneralIgnoreArrows:SetChecked(WIM_Data.ignoreArrowKeys);
+		WIM_OptionsTabbedFrameGeneralMenuRightClick:SetChecked(WIM_Data.menuOnRightClick);
 		
 	--[ Window Settings
-		WIM_OptionsTabbedFrameWindowWindowWidthTitle:SetText(WIM_LOCALIZED_TEXT_WINDOW_WIDTH);
+		WIM_OptionsTabbedFrameWindowWindowWidthTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_WIDTH);
 		WIM_OptionsTabbedFrameWindowWindowWidth:SetValue(WIM_Data.winSize.width);
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_TEXT_WINDOW_HEIGHT);
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_HEIGHT);
 		WIM_OptionsTabbedFrameWindowWindowHeight:SetValue(WIM_Data.winSize.height);
 		WIM_OptionsTabbedFrameWindowWindowCascade:SetChecked(WIM_Data.winCascade.enabled);
+		WIM_OptionsTabbedFrameWindowTimeOutFriend:SetChecked(WIM_Data.msgTimeOut.friends);
+		WIM_OptionsTabbedFrameWindowTimeOutNonFriend:SetChecked(WIM_Data.msgTimeOut.other);
 		
 	--[ Filter Settings
 		WIM_OptionsTabbedFrameFilterAliasEnabled:SetChecked(WIM_Data.enableAlias);
@@ -95,6 +104,7 @@ function WIM_Options_OnShow()
 		WIM_OptionsTabbedFrameHistorySetAutoDelete:SetChecked(WIM_Data.historySettings.autoDelete.enabled);
 	--[ Other
 		
+		WIM_Options_PopOnSendClicked();
 		WIM_Options_ShowShortcutBarClicked();
 		WIM_HistoryScrollBar_Update();
 		
@@ -189,6 +199,7 @@ function WIM_Options_General_Click()
 	WIM_OptionsTabbedFrameFilter:Hide();
 	WIM_OptionsTabbedFrameHistory:Hide();
 	WIM_Options_GeneralScroll:Show();
+	DropDownList1:Hide();
 end
 
 function WIM_Options_Windows_Click()
@@ -201,6 +212,7 @@ function WIM_Options_Windows_Click()
 	WIM_OptionsTabbedFrameHistory:Hide();
 	WIM_OptionsTabbedFrameWindow:Show();
 	WIM_Options_GeneralScroll:Hide();
+	DropDownList1:Hide();
 end
 
 function WIM_Options_Filter_Click()
@@ -213,6 +225,7 @@ function WIM_Options_Filter_Click()
 	WIM_OptionsTabbedFrameHistory:Hide();
 	WIM_OptionsTabbedFrameFilter:Show();
 	WIM_Options_GeneralScroll:Hide();
+	DropDownList1:Hide();
 end
 
 function WIM_Options_History_Click()
@@ -225,6 +238,7 @@ function WIM_Options_History_Click()
 	WIM_OptionsTabbedFrameFilter:Hide();
 	WIM_OptionsTabbedFrameHistory:Show();
 	WIM_Options_GeneralScroll:Hide();
+	DropDownList1:Hide();
 end
 
 function WIM_Options_SupressWispsClicked()
@@ -284,8 +298,10 @@ end
 function WIM_Options_PopOnSendClicked()
 	if(WIM_OptionsTabbedFrameGeneralPopOnSend:GetChecked()) then
 		WIM_Data.popOnSend = true;
+		WIM_OptionsTabbedFrameGeneralInterceptSlashWisp:Enable();
 	else
 		WIM_Data.popOnSend = false;
+		WIM_OptionsTabbedFrameGeneralInterceptSlashWisp:Disable();
 	end
 end
 
@@ -367,10 +383,12 @@ function WIM_Options_CharacerInfoClicked()
 		WIM_Data.characterInfo.show = true;
 		WIM_OptionsDisplayShowCharacterInfoClassIcon:Enable();
 		WIM_OptionsDisplayShowCharacterInfoClassColor:Enable();
+		WIM_OptionsDisplayShowCharacterInfoDetails:Enable();
 	else
 		WIM_Data.characterInfo.show = false;
 		WIM_OptionsDisplayShowCharacterInfoClassIcon:Disable();
 		WIM_OptionsDisplayShowCharacterInfoClassColor:Disable();
+		WIM_OptionsDisplayShowCharacterInfoDetails:Disable();
 	end
 end
 
@@ -418,10 +436,10 @@ end
 function WIM_Options_ShowShortcutBarClicked()
 	if(WIM_OptionsDisplayShowShortcutBar:GetChecked()) then
 		WIM_Data.showShortcutBar = true;
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_TEXT_WINDOW_HEIGHT_DESCRIPTION);
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_HEIGHT.." |cffffffff"..WIM_LOCALIZED_OPTIONS_LIMITED_HEIGHT.."|r");
 	else
 		WIM_Data.showShortcutBar = false;
-		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_TEXT_WINDOW_HEIGHT);
+		WIM_OptionsTabbedFrameWindowWindowHeightTitle:SetText(WIM_LOCALIZED_OPTIONS_WINDOW_HEIGHT);
 	end
 	WIM_SetAllWindowProps();
 end
@@ -431,7 +449,7 @@ function WIM_AliasScrollBar_Update()
 	local lineplusoffset;
 	local AliasNames = {};
 	
-	for key in WIM_Alias do
+	for key,_ in pairs(WIM_Alias) do
 		table.insert(AliasNames, key);
 	end
 	
@@ -464,15 +482,15 @@ function WIM_Options_AliasWindow_Click()
 	alias = string.gsub(alias, " ", "");
 	
 	if(name == "") then
-		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_TEXT_INVALID_NAME);
+		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_OPTIONS_ERROR_INVALID_NAME);
 		return;
 	end
 	if(alias == "") then
-		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_TEXT_INVALID_ALIAS);
+		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_OPTIONS_ERROR_INVALID_ALIAS);
 		return;
 	end
 	if(WIM_Options_AliasWindow.theMode == "add" and WIM_Alias[name] ~= nil) then
-		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_TEXT_NAME_USED);
+		WIM_Options_AliasWindow_Error:SetText(WIM_LOCALIZED_OPTIONS_ERROR_INVALID_NAME2);
 		return;
 	end
 	
@@ -510,7 +528,7 @@ function WIM_FilteringScrollBar_Update()
 	local lineplusoffset;
 	local FilteringNames = {};
 	
-	for key in WIM_Filters do
+	for key,_ in pairs(WIM_Filters) do
 		table.insert(FilteringNames, key);
 	end
 	
@@ -519,7 +537,7 @@ function WIM_FilteringScrollBar_Update()
 		lineplusoffset = line + FauxScrollFrame_GetOffset(WIM_OptionsTabbedFrameFilterFilteringPanelScrollBar);
 		if lineplusoffset <= table.getn(FilteringNames) then
 			getglobal("WIM_OptionsTabbedFrameFilterFilteringPanelButton"..line.."Name"):SetText(FilteringNames[lineplusoffset]);
-			getglobal("WIM_OptionsTabbedFrameFilterFilteringPanelButton"..line.."Action"):SetText(WIM_Filters[FilteringNames[lineplusoffset]]);
+			getglobal("WIM_OptionsTabbedFrameFilterFilteringPanelButton"..line.."Action"):SetText(WIM_LOCALIZE_FILTER_ACTION[WIM_Filters[FilteringNames[lineplusoffset]]]);
 			getglobal("WIM_OptionsTabbedFrameFilterFilteringPanelButton"..line).theFilterName = FilteringNames[lineplusoffset];
 			if ( WIM_Filter_Selected == FilteringNames[lineplusoffset] ) then
 				getglobal("WIM_OptionsTabbedFrameFilterFilteringPanelButton"..line):LockHighlight();
@@ -560,11 +578,11 @@ function WIM_Options_FilterWindow_Click()
 	local tname = string.gsub(name, " ", "");
 	
 	if(tname == "") then
-		WIM_Options_FilterWindow_Error:SetText(WIM_LOCALIZED_TEXT_INVALID_KEY_PHRASE);
+		WIM_Options_FilterWindow_Error:SetText(WIM_LOCALIZED_OPTIONS_ERROR_INVALID_FILTER);
 		return;
 	end
 	if(WIM_Options_FilterWindow.theMode == "add" and WIM_Filters[name] ~= nil) then
-		WIM_Options_FilterWindow_Error:SetText(WIM_LOCALIZED_TEXT_USED_KEY_PHRASE);
+		WIM_Options_FilterWindow_Error:SetText(WIM_LOCALIZED_OPTIONS_ERROR_INVALID_FILTER2);
 		return;
 	end
 	
@@ -761,21 +779,21 @@ end
 function WIM_Options_HistoryAutoDeleteTime_Initialize()
 	local info = {};
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_DAY;--.."           "; --[spaces for quick width fix
+	info.text = WIM_LOCALIZED_OPTIONS_DAY;--.."           "; --[spaces for quick width fix
 	info.value = 1;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_WEEK;
+	info.text = WIM_LOCALIZED_OPTIONS_WEEK;
 	info.value = 7;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_MONTH;
+	info.text = WIM_LOCALIZED_OPTIONS_MONTH;
 	info.value = 30;
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_HistoryAutoDeleteTimeClick;
@@ -792,7 +810,7 @@ function WIM_HistoryScrollBar_Update()
 	local lineplusoffset;
 	local HistoryNames = {};
 	
-	for key in WIM_History do
+	for key,_ in pairs(WIM_History) do
 		table.insert(HistoryNames, key);
 	end
 	table.sort(HistoryNames);
@@ -830,7 +848,7 @@ function WIM_Options_WindowAnchorToggle_Click()
 		);
 		WIM_WindowAnchor:Show();
 		GameTooltip:SetOwner(WIM_WindowAnchor, "ANCHOR_RIGHT");
-		GameTooltip:SetText(WIM_LOCALIZED_TEXT_SET_LOCATION_DESCRIPTION);
+		GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_TOOLTIP_MSG_SPAWN);
 	end
 end
 
@@ -851,56 +869,56 @@ end
 function WIM_Options_CascadeDirection_Initialize()
 	local info = {};
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_UP;
+	info.text = WIM_LOCALIZED_OPTIONS_UP;
 	info.value = "up";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_DOWN;
+	info.text = WIM_LOCALIZED_OPTIONS_DOWN;
 	info.value = "down";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_LEFT;
+	info.text = WIM_LOCALIZED_OPTIONS_LEFT;
 	info.value = "left";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_RIGHT;
+	info.text = WIM_LOCALIZED_OPTIONS_RIGHT;
 	info.value = "right";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_UP_AND_LEFT;
+	info.text = WIM_LOCALIZED_OPTIONS_UP.." & "..WIM_LOCALIZED_OPTIONS_LEFT;
 	info.value = "upleft";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_UP_AND_RIGHT;
+	info.text = WIM_LOCALIZED_OPTIONS_UP.." & "..WIM_LOCALIZED_OPTIONS_RIGHT;
 	info.value = "upright";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_DOWN_AND_LEFT;
+	info.text = WIM_LOCALIZED_OPTIONS_DOWN.." & "..WIM_LOCALIZED_OPTIONS_LEFT;
 	info.value = "downleft";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
 	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
 	
 	info = { };
-	info.text = WIM_LOCALIZED_TEXT_DOWN_AND_RIGHT;
+	info.text = WIM_LOCALIZED_OPTIONS_DOWN.." & "..WIM_LOCALIZED_OPTIONS_RIGHT;
 	info.value = "downright";
 	info.justifyH = "LEFT";
 	info.func = WIM_Options_CascadeDirectionClick;
@@ -912,6 +930,128 @@ function WIM_Options_CascadeDirectionClick()
 	WIM_CascadeStep = 0;
 	UIDropDownMenu_SetSelectedValue(WIM_OptionsTabbedFrameWindowCascadeDirection, WIM_Data.winCascade.direction);
 end
+
+function WIM_Options_WindowTimeOutFriendsClicked()
+	if(WIM_OptionsTabbedFrameWindowTimeOutFriend:GetChecked()) then
+		WIM_Data.msgTimeOut.friends = true;
+	else
+		WIM_Data.msgTimeOut.friends = false;
+	end
+end
+
+function WIM_Options_WindowTimeOutNonFriendsClicked()
+	if(WIM_OptionsTabbedFrameWindowTimeOutNonFriend:GetChecked()) then
+		WIM_Data.msgTimeOut.other = true;
+	else
+		WIM_Data.msgTimeOut.other = false;
+	end
+end
+
+
+
+
+
+
+
+function WIM_Options_TimeOutFriends_OnShow()
+	UIDropDownMenu_Initialize(this, WIM_Options_TimeOutFriends_Initialize);
+	UIDropDownMenu_SetSelectedValue(this, WIM_Data.msgTimeOut.fTO);
+	UIDropDownMenu_SetWidth(75, WIM_OptionsTabbedFrameWindowTimeOutFriendMenu);
+end
+
+function WIM_Options_TimeOutFriends_Initialize()
+	local info = {};
+	info = { };
+	info.text = "5 min";
+	info.value = "to1";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "10 min";
+	info.value = "to2";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "15 min";
+	info.value = "to3";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "30 min";
+	info.value = "to4";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "60 min";
+	info.value = "to5";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+end
+
+function WIM_Options_TimeOutFriendMenuClick()
+	WIM_Data.msgTimeOut.fTO = this.value;
+	UIDropDownMenu_SetSelectedValue(WIM_OptionsTabbedFrameWindowTimeOutFriendMenu, WIM_Data.msgTimeOut.fTO);
+end
+
+function WIM_Options_TimeOutNonFriends_OnShow()
+	UIDropDownMenu_Initialize(this, WIM_Options_TimeOutNonFriends_Initialize);
+	UIDropDownMenu_SetSelectedValue(this, WIM_Data.msgTimeOut.oTO);
+	UIDropDownMenu_SetWidth(75, WIM_OptionsTabbedFrameWindowTimeOutNonFriendMenu);
+end
+
+function WIM_Options_TimeOutNonFriends_Initialize()
+	local info = {};
+	info = { };
+	info.text = "5 min";
+	info.value = "to1";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutNonFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "10 min";
+	info.value = "to2";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutNonFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "15 min";
+	info.value = "to3";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutNonFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "30 min";
+	info.value = "to4";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutNonFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+	
+	info = { };
+	info.text = "60 min";
+	info.value = "to5";
+	info.justifyH = "LEFT";
+	info.func = WIM_Options_TimeOutNonFriendMenuClick;
+	UIDropDownMenu_AddButton(info, UIDROPDOWNMENU_MENU_LEVEL);
+end
+
+function WIM_Options_TimeOutNonFriendMenuClick()
+	WIM_Data.msgTimeOut.oTO = this.value;
+	UIDropDownMenu_SetSelectedValue(WIM_OptionsTabbedFrameWindowTimeOutNonFriendMenu, WIM_Data.msgTimeOut.oTO);
+end
+
+
 
 function WIM_Help_Description_Click()
 	PanelTemplates_SelectTab(WIM_HelpTab1);
@@ -955,4 +1095,110 @@ function WIM_Help_Credits_Click()
 	WIM_HelpScrollFrameScrollChildText:SetText(WIM_CREDITS);
 	WIM_HelpScrollFrameScrollBar:SetValue(0);
 	WIM_HelpScrollFrame:UpdateScrollChildRect();
+end
+
+function WIM_Options_ShortCutMenuDropDown()
+	info = {};
+	info.text = WIM_LOCALIZED_LOCATION;
+	info.value = "location";
+	info.keepShownOnClick = 1;
+	info.func = WIM_Options_ShortCutMenuDropDown_Click;
+	info.checked = WIM_Data.showShortcutBarButton[info.value];
+	UIDropDownMenu_AddButton(info);
+
+	info = {};
+	info.text = WIM_LOCALIZED_INVITE;
+	info.value = "invite";
+	info.keepShownOnClick = 1;
+	info.func = WIM_Options_ShortCutMenuDropDown_Click;
+	info.checked = WIM_Data.showShortcutBarButton[info.value];
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = WIM_LOCALIZED_FRIEND;
+	info.value = "friend";
+	info.keepShownOnClick = 1;
+	info.func = WIM_Options_ShortCutMenuDropDown_Click;
+	info.checked = WIM_Data.showShortcutBarButton[info.value];
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = WIM_LOCALIZED_IGNORE;
+	info.value = "ignore";
+	info.keepShownOnClick = 1;
+	info.func = WIM_Options_ShortCutMenuDropDown_Click;
+	info.checked = WIM_Data.showShortcutBarButton[info.value];
+	UIDropDownMenu_AddButton(info);
+end
+
+function WIM_Options_ShortCutMenuDropDown_Click()
+	-- checked get set after click event, so not first
+	if(not this.checked) then
+		WIM_Data.showShortcutBarButton[this.value] = true;
+	else
+		WIM_Data.showShortcutBarButton[this.value] = false;
+	end
+	WIM_SetAllWindowProps();
+end
+
+function WIM_Options_TimeStampDropDown()
+	info = {};
+	info.text = "HH:MM   |cff888888(12 hr)|r";
+	info.value = "t01";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+
+	info = {};
+	info.text = "HH:MM AM/PM   |cff888888(12 hr)|r";
+	info.value = "t02";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = "HH:MM   |cff888888(24 hr)|r";
+	info.value = "t03";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = "HH:MM:SS   |cff888888(12 hr)|r";
+	info.value = "t04";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = "HH:MM:SS AM/PM   |cff888888(12 hr)|r";
+	info.value = "t05";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+	
+	info = {};
+	info.text = "HH:MM:SS     |cff888888(24 hr)|r";
+	info.value = "t06";
+	info.func = WIM_Options_TimeStampDropDown_Click;
+	UIDropDownMenu_AddButton(info);
+end
+
+function WIM_Options_TimeStampDropDown_Click()
+	WIM_Data.timeStampFormat = this.value;
+	UIDropDownMenu_SetSelectedValue(WIM_OptionsDisplayShowTimeStampsDropDownFrame, WIM_Data.timeStampFormat);
+end
+
+
+function WIM_Options_IgnoreArrowsClicked()
+	if(WIM_OptionsTabbedFrameGeneralIgnoreArrows:GetChecked()) then
+		WIM_Data.ignoreArrowKeys = true;
+	else
+		WIM_Data.ignoreArrowKeys = false;
+	end
+	WIM_SetAllWindowProps();
+end
+
+
+function WIM_Options_MenuRightClickClicked()
+	if(WIM_OptionsTabbedFrameGeneralMenuRightClick:GetChecked()) then
+		WIM_Data.menuOnRightClick = true;
+	else
+		WIM_Data.menuOnRightClick = false;
+	end
 end

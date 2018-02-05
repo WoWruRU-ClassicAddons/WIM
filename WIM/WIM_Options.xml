@@ -1,13 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 
 	<Script file="WIM_Options.lua"/>
-	<Script file="localization.lua"/>
-	<Script file="localization.ru.lua"/>
-	<Script file="localization.cn.lua"/>
-	<Script file="localization.de.lua"/>
-	<Script file="localization.fr.lua"/>
-	<Script file="localization.kr.lua"/>
-	<Script file="localization.tw.lua"/>
 
 	<Frame name="WIM_Options_PanelTemplate" virtual="true">
         <Backdrop bgFile="Interface\Buttons\UI-SliderBar-Background" edgeFile="Interface\Buttons\UI-SliderBar-Border" tile="true">
@@ -22,7 +15,6 @@
 			</EdgeSize>
 		</Backdrop>
 	</Frame>
-	
 	
 	<Frame name="WIM_Options_TitlePanelTemplate" virtual="true">
 		<Backdrop bgFile="Interface\Tooltips\UI-Tooltip-Background" edgeFile="Interface\Tooltips\UI-Tooltip-Border" tile="true">
@@ -55,7 +47,7 @@
 		</Backdrop>
 		<Layers>
 			<Layer level="ARTWORK">
-				<FontString name="$parentTitle"  font="Fonts\FRIZQT__.TTF" text="">
+				<FontString name="$parentTitle"  inherits="GameFontNormal" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 							<Offset>
@@ -385,7 +377,7 @@
 				</Anchors>
 				<TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
 				</Texture>
-				<FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_WIMOPTIONS">
+				<FontString name="$parentTitleString" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_TITLE">
 					<Size>
 						<AbsDimension x="140" y="0" />
 					</Size>
@@ -427,7 +419,7 @@
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ENABLE_WIM">
+						<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_ENABLE_WIM">
 							<Anchors>
 								<Anchor point="LEFT">
 									<Offset>
@@ -491,7 +483,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_DISPLAY_OPTIONS">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_TITLE">
 									<Anchors>
 										<Anchor point="TOP">
 											<Offset>
@@ -525,7 +517,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_INCOMING_WISPERS">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_WISP_IN">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -557,7 +549,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_OUTGOING_WISPERS">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_WISP_OUT">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -589,7 +581,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SYSTEM_MESSAGES">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_SYSTEM">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -621,7 +613,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ERROR_MESSAGES">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_ERROR">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -653,7 +645,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_WEB_LINK">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_URL">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -676,7 +668,7 @@
 						</Layers>
 					</Frame>
 					<!-- End Color Swatches -->
-					<CheckButton name="$parentShowShortcutBar">
+					<CheckButton name="$parentShowTimeStamps">
 						<Size>
 							<AbsDimension x="25" y="25" />
 						</Size>
@@ -693,11 +685,11 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SHOW_SHORTCUT">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_TIMESTAMPS">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
-												<AbsDimension x="30" y="1" />
+												<AbsDimension x="45" y="1" />
 											</Offset>
 										</Anchor>
 									</Anchors>
@@ -714,62 +706,76 @@
 								</FontString>
 							</Layer>
 						</Layers>
-						<Scripts>
-							<OnClick>
-								if ( this:GetChecked() ) then
-									PlaySound("igMainMenuOptionCheckBoxOff");
-								else
-									PlaySound("igMainMenuOptionCheckBoxOn");
-								end
-								WIM_Options_ShowShortcutBarClicked();
-							</OnClick>
-							<OnEnter>
-								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_SHOW_SHORTCUT_DESCRIPTION);
-							</OnEnter>
-							<OnLeave>
-								GameTooltip:Hide();
-							</OnLeave>
-						</Scripts>
-					</CheckButton>
-					<CheckButton name="$parentShowTimeStamps">
-						<Size>
-							<AbsDimension x="25" y="25" />
-						</Size>
-						<Anchors>
-							<Anchor point="TOPLEFT" relativeTo="$parentShowShortcutBar" relativePoint="BOTTOMLEFT">
-								<Offset>
-									<AbsDimension x="0" y="0" />
-								</Offset>
-							</Anchor>
-						</Anchors>
-						<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
-						<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
-						<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
-						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
-						<Layers>
-							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SHOW_TIMESTAMPS">
-									<Anchors>
-										<Anchor point="LEFT">
-											<Offset>
-												<AbsDimension x="30" y="1" />
-											</Offset>
-										</Anchor>
-									</Anchors>
-									<FontHeight>
-										<AbsValue val="12" />
-									</FontHeight>
-									<Color r="1" g="0.8196079" b="0" />
-									<Shadow>
-										<Color r="0" g="0" b="0" />
+						<Frames>
+							<Button name="$parentMenuButton">
+								<Size>
+									<AbsDimension x="24" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT">
 										<Offset>
-											<AbsDimension x="1" y="-1" />
+											<AbsDimension x="20" y="0"/>
 										</Offset>
-									</Shadow>
-								</FontString>
-							</Layer>
-						</Layers>
+									</Anchor>
+								</Anchors>
+								<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</NormalTexture>
+								<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</PushedTexture>
+								<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</DisabledTexture>
+								<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</HighlightTexture>
+								<Scripts>
+									<OnClick>
+										PlaySound("igChatScrollDown");
+										ToggleDropDownMenu(1, nil, getglobal(this:GetParent():GetName().."DropDownFrame"), this:GetName(), 0, 0)
+									</OnClick>
+								</Scripts>
+							</Button>
+							<Frame name="$parentDropDownFrame" inherits="UIDropDownMenuTemplate" hidden="true">
+								<Size>
+									<AbsDimension x="125" y="15"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentMenuButton" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										UIDropDownMenu_Initialize(this, WIM_Options_TimeStampDropDown, "MENU");
+										UIDropDownMenu_SetSelectedValue(this, WIM_Data.timeStampFormat);
+									</OnLoad>
+								</Scripts>
+							</Frame>
+						</Frames>
 						<Scripts>
 							<OnClick>
 								if ( this:GetChecked() ) then
@@ -781,7 +787,7 @@
 							</OnClick>
 						</Scripts>
 					</CheckButton>
-					<CheckButton name="$parentShowCharacterInfo">
+					<CheckButton name="$parentShowShortcutBar">
 						<Size>
 							<AbsDimension x="25" y="25" />
 						</Size>
@@ -798,7 +804,132 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SHOW_CHARACTER_INFO">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_SHORTCUTBAR">
+									<Anchors>
+										<Anchor point="LEFT">
+											<Offset>
+												<AbsDimension x="45" y="1" />
+											</Offset>
+										</Anchor>
+									</Anchors>
+									<FontHeight>
+										<AbsValue val="12" />
+									</FontHeight>
+									<Color r="1" g="0.8196079" b="0" />
+									<Shadow>
+										<Color r="0" g="0" b="0" />
+										<Offset>
+											<AbsDimension x="1" y="-1" />
+										</Offset>
+									</Shadow>
+								</FontString>
+							</Layer>
+						</Layers>
+						<Frames>
+							<Button name="$parentMenuButton">
+								<Size>
+									<AbsDimension x="24" y="24"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT">
+										<Offset>
+											<AbsDimension x="20" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<NormalTexture name="$parentNormalTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Up">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</NormalTexture>
+								<PushedTexture name="$parentPushedTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Down">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</PushedTexture>
+								<DisabledTexture name="$parentDisabledTexture" file="Interface\ChatFrame\UI-ChatIcon-ScrollDown-Disabled">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</DisabledTexture>
+								<HighlightTexture name="$parentHighlightTexture" file="Interface\Buttons\UI-Common-MouseHilight" alphaMode="ADD">
+									<Size>
+										<AbsDimension x="24" y="24"/>
+									</Size>
+									<Anchors>
+										<Anchor point="RIGHT"/>
+									</Anchors>
+								</HighlightTexture>
+								<Scripts>
+									<OnClick>
+										PlaySound("igChatScrollDown");
+										ToggleDropDownMenu(1, nil, getglobal(this:GetParent():GetName().."DropDownFrame"), this:GetName(), 0, 0)
+									</OnClick>
+								</Scripts>
+							</Button>
+							<Frame name="$parentDropDownFrame" inherits="UIDropDownMenuTemplate" hidden="true">
+								<Size>
+									<AbsDimension x="125" y="15"/>
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentMenuButton" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="0"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<OnLoad>
+										UIDropDownMenu_Initialize(this, WIM_Options_ShortCutMenuDropDown, "MENU");
+									</OnLoad>
+								</Scripts>
+							</Frame>
+						</Frames>
+						<Scripts>
+							<OnClick>
+								if ( this:GetChecked() ) then
+									PlaySound("igMainMenuOptionCheckBoxOff");
+								else
+									PlaySound("igMainMenuOptionCheckBoxOn");
+								end
+								WIM_Options_ShowShortcutBarClicked();
+							</OnClick>
+							<OnEnter>
+								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_DISPLAY_TOOLTIP_SCB);
+							</OnEnter>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+						</Scripts>
+					</CheckButton>
+					<CheckButton name="$parentShowCharacterInfo">
+						<Size>
+							<AbsDimension x="25" y="25" />
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT" relativeTo="$parentShowShortcutBar" relativePoint="BOTTOMLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+						<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+						<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+						<Layers>
+							<Layer level="OVERLAY">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_CINFO">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -830,7 +961,7 @@
 							</OnClick>
 							<OnEnter>
 								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_SHOW_CHARACTER_INFO_DESCRIPTION);
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_DISPLAY_TOOLTIP_CINFO);
 							</OnEnter>
 							<OnLeave>
 								GameTooltip:Hide();
@@ -855,7 +986,7 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_CLASS_ICON">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_CINFO_CLASS">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -887,7 +1018,7 @@
 							</OnClick>
 							<OnEnter>
 								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_CHARACTER_CLASS_DESCRIPTION);
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_DISPLAY_TOOLTOP_NEW);
 							</OnEnter>
 							<OnLeave>
 								GameTooltip:Hide();
@@ -912,7 +1043,7 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_CLASS_COLORS">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_CINFO_COLOR">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -944,7 +1075,7 @@
 							</OnClick>
 							<OnEnter>
 								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_CHARACTER_CLASS_DESCRIPTION);
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_DISPLAY_TOOLTOP_NEW);
 							</OnEnter>
 							<OnLeave>
 								GameTooltip:Hide();
@@ -969,7 +1100,7 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_CHARACTER_DETAILS">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_DISPLAY_CINFO_DETAILS">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -1001,7 +1132,7 @@
 							</OnClick>
 							<OnEnter>
 								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_CHARACTER_CLASS_DESCRIPTION);
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_DISPLAY_TOOLTOP_NEW);
 							</OnEnter>
 							<OnLeave>
 								GameTooltip:Hide();
@@ -1027,7 +1158,8 @@
 								WIM_Data.fontSize = this:GetValue();
 								WIM_SetAllWindowProps();
 								getglobal(this:GetName().."EditBox"):SetText(this:GetValue());
-								WIM_HistoryFrameMessageListScrollingMessageFrame:SetFont("Fonts\\FRIZQT__.TTF",WIM_Data.fontSize);
+								local Path, _, Flags = WIM_HistoryFrameMessageListScrollingMessageFrame:GetFont();
+								WIM_HistoryFrameMessageListScrollingMessageFrame:SetFont(Path,WIM_Data.fontSize+2, Flags);
 							</OnValueChanged>
 						</Scripts>
 					</Slider>
@@ -1111,7 +1243,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_MINIMAP_ICON">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_MINIMAP_TITLE">
 									<Anchors>
 										<Anchor point="TOP">
 											<Offset>
@@ -1152,7 +1284,7 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_MINIMAP_ICON_SHOW">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_MINIMAP_ENABLE">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -1201,7 +1333,7 @@
 						<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_FREE_MOVING">
+								<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_MINIMAP_FREEMOVING">
 									<Anchors>
 										<Anchor point="LEFT">
 											<Offset>
@@ -1233,7 +1365,7 @@
 							</OnClick>
 							<OnEnter>
 								GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-								GameTooltip:SetText(WIM_LOCALIZED_TEXT_FREE_MOVING_DESCRIPTION);
+								GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_MINIMAP_TOOLTIP_FM);
 							</OnEnter>
 							<OnLeave>
 								GameTooltip:Hide();
@@ -1265,7 +1397,7 @@
 			
 			
 			<!-- Option Tabs -->
-			<Button name="$parentOptionTab1" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_GENERAL" alpha=".8">
+			<Button name="$parentOptionTab1" inherits="TabButtonTemplate" text="WIM_LOCALIZED_OPTIONS_TAB_GENERAL" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentMiniMap" relativePoint="BOTTOMLEFT">
 						<Offset>
@@ -1285,7 +1417,7 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="$parentOptionTab2" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_WINDOWS" alpha=".8">
+			<Button name="$parentOptionTab2" inherits="TabButtonTemplate" text="WIM_LOCALIZED_OPTIONS_TAB_WINDOWS" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentOptionTab1" relativePoint="TOPRIGHT">
 						<Offset>
@@ -1305,7 +1437,7 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="$parentOptionTab3" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_FILTERS" alpha=".8">
+			<Button name="$parentOptionTab3" inherits="TabButtonTemplate" text="WIM_LOCALIZED_OPTIONS_TAB_FILTERS" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentOptionTab2" relativePoint="TOPRIGHT">
 						<Offset>
@@ -1325,7 +1457,7 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="$parentOptionTab4" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_HISTORY" alpha=".8">
+			<Button name="$parentOptionTab4" inherits="TabButtonTemplate" text="WIM_LOCALIZED_OPTIONS_TAB_HISTORY" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentOptionTab3" relativePoint="TOPRIGHT">
 						<Offset>
@@ -1411,7 +1543,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_AUTO_FOCUS">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_AUTO_FOCUS">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1460,7 +1592,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_KEEP_FOCUS">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_KEEP_FOCUS">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1510,7 +1642,7 @@
 										<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_MAJOR_CITY">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_FOCUS_RESTED">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1559,7 +1691,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SHOW_TOOLTIPS">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_SHOW_TOOLTIPS">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1608,7 +1740,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SEND_WISP">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_POP_SEND">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1640,6 +1772,63 @@
 											</OnClick>
 										</Scripts>
 									</CheckButton>
+									<CheckButton name="$parentInterceptSlashWisp">
+										<Size>
+											<AbsDimension x="25" y="25" />
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="$parentPopOnSend" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="25" y="-2" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+										<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+										<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+										<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
+										<Layers>
+											<Layer level="OVERLAY">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_INTERCEPT">
+													<Anchors>
+														<Anchor point="LEFT">
+															<Offset>
+																<AbsDimension x="30" y="1" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+													<FontHeight>
+														<AbsValue val="12" />
+													</FontHeight>
+													<Color r="1" g="0.8196079" b="0" />
+													<Shadow>
+														<Color r="0" g="0" b="0" />
+														<Offset>
+															<AbsDimension x="1" y="-1" />
+														</Offset>
+													</Shadow>
+												</FontString>
+											</Layer>
+										</Layers>
+										<Scripts>
+											<OnClick>
+												if ( this:GetChecked() ) then
+													PlaySound("igMainMenuOptionCheckBoxOff");
+												else
+													PlaySound("igMainMenuOptionCheckBoxOn");
+												end
+												WIM_Options_InterceptSlashWispClicked();
+											</OnClick>
+											<OnEnter>
+												GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
+												GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_GENERAL_TOOLTIP_INTCP, nil, nil, nil, nil, 1);
+											</OnEnter>
+											<OnLeave>
+												GameTooltip:Hide();
+											</OnLeave>
+										</Scripts>
+									</CheckButton>
 									<CheckButton name="$parentPopNew">
 										<Size>
 											<AbsDimension x="25" y="25" />
@@ -1647,7 +1836,7 @@
 										<Anchors>
 											<Anchor point="TOPLEFT" relativeTo="$parentPopOnSend" relativePoint="BOTTOMLEFT">
 												<Offset>
-													<AbsDimension x="0" y="-2" />
+													<AbsDimension x="0" y="-30" />
 												</Offset>
 											</Anchor>
 										</Anchors>
@@ -1657,7 +1846,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECEIVING_NEW_WISP">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_POP_IN">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1707,7 +1896,7 @@
 										<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECEIVING_REPLIES">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_POP_REPLY">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1757,7 +1946,7 @@
 										<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_DISABLE_POPUPS">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_POP_COMBAT">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1806,7 +1995,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SUPRESS_WISP">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_SUPRESS">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1855,7 +2044,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_PLAY_SOUND">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_SOUND_IN">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1904,7 +2093,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SORT_CONVER">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_SORT_ALPHA">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -1953,7 +2142,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_AFK_AND_DND">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_AFK_DND">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2002,7 +2191,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ESC_CLOSE">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_ESCAPE">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2034,14 +2223,15 @@
 											</OnClick>
 											<OnEnter>
 												GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-												GameTooltip:SetText(WIM_LOCALIZED_TEXT_ESC_CLOSE_DESCRIPTION, nil, nil, nil, nil, 1);
+												GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_GENERAL_TOOLTIP_ESC, nil, nil, nil, nil, 1);
 											</OnEnter>
 											<OnLeave>
 												GameTooltip:Hide();
 											</OnLeave>
 										</Scripts>
 									</CheckButton>
-									<CheckButton name="$parentInterceptSlashWisp">
+									
+									<CheckButton name="$parentIgnoreArrows">
 										<Size>
 											<AbsDimension x="25" y="25" />
 										</Size>
@@ -2058,7 +2248,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_INTERCEPT_WISP">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_IGNOREARROW">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2086,19 +2276,60 @@
 												else
 													PlaySound("igMainMenuOptionCheckBoxOn");
 												end
-												WIM_Options_InterceptSlashWispClicked();
+												WIM_Options_IgnoreArrowsClicked();
 											</OnClick>
-											<OnEnter>
-												GameTooltip:SetOwner(this, "ANCHOR_TOPRIGHT");
-												GameTooltip:SetText(WIM_LOCALIZED_TEXT_INTERCEPT_WISP_DESCRIPTION, nil, nil, nil, nil, 1);
-											</OnEnter>
-											<OnLeave>
-												GameTooltip:Hide();
-											</OnLeave>
 										</Scripts>
 									</CheckButton>
 							
-							
+									<CheckButton name="$parentMenuRightClick">
+										<Size>
+											<AbsDimension x="25" y="25" />
+										</Size>
+										<Anchors>
+											<Anchor point="TOPLEFT" relativeTo="$parentIgnoreArrows" relativePoint="BOTTOMLEFT">
+												<Offset>
+													<AbsDimension x="0" y="-2" />
+												</Offset>
+											</Anchor>
+										</Anchors>
+										<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+										<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+										<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+										<Layers>
+											<Layer level="OVERLAY">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_GENERAL_MENURCLICK">
+													<Anchors>
+														<Anchor point="LEFT">
+															<Offset>
+																<AbsDimension x="30" y="1" />
+															</Offset>
+														</Anchor>
+													</Anchors>
+													<FontHeight>
+														<AbsValue val="12" />
+													</FontHeight>
+													<Color r="1" g="0.8196079" b="0" />
+													<Shadow>
+														<Color r="0" g="0" b="0" />
+														<Offset>
+															<AbsDimension x="1" y="-1" />
+														</Offset>
+													</Shadow>
+												</FontString>
+											</Layer>
+										</Layers>
+										<Scripts>
+											<OnClick>
+												if ( this:GetChecked() ) then
+													PlaySound("igMainMenuOptionCheckBoxOff");
+												else
+													PlaySound("igMainMenuOptionCheckBoxOn");
+												end
+												WIM_Options_MenuRightClickClicked();
+											</OnClick>
+										</Scripts>
+									</CheckButton>
 							
 							
 									<!-- End General Options -->
@@ -2139,7 +2370,7 @@
 								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ENABLE_CASCADING">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_WINDOWS_CASCADE_DIR">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -2173,7 +2404,7 @@
 							</CheckButton>
 							
 							
-							<Button name="$parentWindowAnchor" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_SET_LOCATION">
+							<Button name="$parentWindowAnchor" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_WINDOWS_SET_LOCATION">
 								<Size>
 									<AbsDimension x="120" y="28"/>
 								</Size>
@@ -2251,6 +2482,145 @@
 									</OnValueChanged>
 								</Scripts>
 							</Slider>
+							
+							<CheckButton name="$parentTimeOutFriend">
+								<Size>
+									<AbsDimension x="25" y="25" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT">
+										<Offset>
+											<AbsDimension x="10" y="-230" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_TIMEOUT_FRIENDS">
+											<Anchors>
+												<Anchor point="LEFT">
+													<Offset>
+														<AbsDimension x="30" y="1" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<FontHeight>
+												<AbsValue val="12" />
+											</FontHeight>
+											<Color r="1" g="0.8196079" b="0" />
+											<Shadow>
+												<Color r="0" g="0" b="0" />
+												<Offset>
+													<AbsDimension x="1" y="-1" />
+												</Offset>
+											</Shadow>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										if ( this:GetChecked() ) then
+											PlaySound("igMainMenuOptionCheckBoxOff");
+										else
+											PlaySound("igMainMenuOptionCheckBoxOn");
+										end
+										WIM_Options_WindowTimeOutFriendsClicked();
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<Frame name="$parentTimeOutFriendMenu" inherits="UIDropDownMenuTemplate" enableMouse="true">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentTimeOutFriend" relativePoint="TOPLEFT">
+										<Offset>
+											<AbsDimension x="190" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<!-- Ensure that the correct information is displayed
+									Also setup the different options and function for selecting options-->
+									<OnShow>
+										WIM_Options_TimeOutFriends_OnShow();
+									</OnShow>
+									<OnLeave>
+										GameTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</Frame>
+							
+							<CheckButton name="$parentTimeOutNonFriend">
+								<Size>
+									<AbsDimension x="25" y="25" />
+								</Size>
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentTimeOutFriend" relativePoint="BOTTOMLEFT">
+										<Offset>
+											<AbsDimension x="0" y="-2" />
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<NormalTexture file="Interface\Buttons\UI-CheckBox-Up" />
+								<PushedTexture file="Interface\Buttons\UI-CheckBox-Down" />
+								<HighlightTexture file="Interface\Buttons\UI-CheckBox-Highlight" alphaMode="ADD" />
+								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
+								<Layers>
+									<Layer level="OVERLAY">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_TIMEOUT_OTHER">
+											<Anchors>
+												<Anchor point="LEFT">
+													<Offset>
+														<AbsDimension x="30" y="1" />
+													</Offset>
+												</Anchor>
+											</Anchors>
+											<FontHeight>
+												<AbsValue val="12" />
+											</FontHeight>
+											<Color r="1" g="0.8196079" b="0" />
+											<Shadow>
+												<Color r="0" g="0" b="0" />
+												<Offset>
+													<AbsDimension x="1" y="-1" />
+												</Offset>
+											</Shadow>
+										</FontString>
+									</Layer>
+								</Layers>
+								<Scripts>
+									<OnClick>
+										if ( this:GetChecked() ) then
+											PlaySound("igMainMenuOptionCheckBoxOff");
+										else
+											PlaySound("igMainMenuOptionCheckBoxOn");
+										end
+										WIM_Options_WindowTimeOutNonFriendsClicked();
+									</OnClick>
+								</Scripts>
+							</CheckButton>
+							<Frame name="$parentTimeOutNonFriendMenu" inherits="UIDropDownMenuTemplate" enableMouse="true">
+								<Anchors>
+									<Anchor point="TOPLEFT" relativeTo="$parentTimeOutNonFriend" relativePoint="TOPLEFT">
+										<Offset>
+											<AbsDimension x="220" y="2"/>
+										</Offset>
+									</Anchor>
+								</Anchors>
+								<Scripts>
+									<!-- Ensure that the correct information is displayed
+									Also setup the different options and function for selecting options-->
+									<OnShow>
+										WIM_Options_TimeOutNonFriends_OnShow();
+									</OnShow>
+									<OnLeave>
+										GameTooltip:Hide();
+									</OnLeave>
+								</Scripts>
+							</Frame>
+							
 							<!-- End Window Options -->
 						</Frames>
 					</Frame>
@@ -2295,7 +2665,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ENABLE_ALIASING">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_FILTERS_ENABLE">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2344,7 +2714,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SHOW_COMMENT">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_FILTERS_COMMENT">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2376,7 +2746,7 @@
 											</OnClick>
 										</Scripts>
 									</CheckButton>
-									<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_NAME">
+									<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_NAME">
 										<Anchors>
 											<Anchor point="TOPLEFT">
 												<Offset>
@@ -2394,7 +2764,7 @@
 											</OnClick>
 										</Scripts>
 									</Button>
-									<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_ALIAS">
+									<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_ALIAS">
 										<Anchors>
 											<Anchor point="TOPLEFT" relativeTo="$parentColumnHeader1" relativePoint="TOPRIGHT">
 												<Offset>
@@ -2492,7 +2862,7 @@
 													</Anchor>
 												</Anchors>
 											</Button>
-											<Button name="$parentAdd" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_ADD">
+											<Button name="$parentAdd" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_ADD">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2506,7 +2876,7 @@
 												<Scripts>
 													<OnClick>
 														PlaySound("igMainMenuClose");
-														WIM_Options_AliasWindowTitleString:SetText(WIM_LOCALIZED_TEXT_NEW_ALIAS);
+														WIM_Options_AliasWindowTitleString:SetText(WIM_LOCALIZED_OPTIONS_FILTERS_ALIAS_ADD);
 														WIM_Options_AliasWindow_Name:SetText("");
 														WIM_Options_AliasWindow_Alias:SetText("");
 														WIM_Options_AliasWindow.prevName = "";
@@ -2516,7 +2886,7 @@
 													</OnClick>
 												</Scripts>
 											</Button>
-											<Button name="$parentRemove" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_REMOVE">
+											<Button name="$parentRemove" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_REMOVE">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2538,7 +2908,7 @@
 													</OnClick>
 												</Scripts>
 											</Button>
-											<Button name="$parentEdit" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_EDIT">
+											<Button name="$parentEdit" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_EDIT">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2553,7 +2923,7 @@
 													<OnClick>
 														PlaySound("igMainMenuClose");
 														if(WIM_Alias_Selected ~= "") then
-															WIM_Options_AliasWindowTitleString:SetText(WIM_LOCALIZED_TEXT_EDIT_ALIAS);
+															WIM_Options_AliasWindowTitleString:SetText(WIM_LOCALIZED_OPTIONS_FILTERS_ALIAS_EDIT);
 															WIM_Options_AliasWindow.theMode = "edit";
 															WIM_Options_AliasWindow.prevName = WIM_Alias_Selected;
 															WIM_Options_AliasWindow_Name:SetText(WIM_Alias_Selected);
@@ -2601,7 +2971,7 @@
 										<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 										<Layers>
 											<Layer level="OVERLAY">
-												<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ENABLE_FILTERING">
+												<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_FILTERS_FILTER_ENABLE">
 													<Anchors>
 														<Anchor point="LEFT">
 															<Offset>
@@ -2633,7 +3003,7 @@
 											</OnClick>
 										</Scripts>
 									</CheckButton>
-									<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_KEYWORDS_PHRASES">
+									<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_KEY_PHRASE">
 										<Anchors>
 											<Anchor point="TOPLEFT">
 												<Offset>
@@ -2651,7 +3021,7 @@
 											</OnClick>
 										</Scripts>
 									</Button>
-									<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_ACTION">
+									<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_ACTION">
 										<Anchors>
 											<Anchor point="TOPLEFT" relativeTo="$parentColumnHeader1" relativePoint="TOPRIGHT">
 												<Offset>
@@ -2749,7 +3119,7 @@
 													</Anchor>
 												</Anchors>
 											</Button>
-											<Button name="$parentAdd" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_ADD">
+											<Button name="$parentAdd" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_ADD">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2763,7 +3133,7 @@
 												<Scripts>
 													<OnClick>
 														PlaySound("igMainMenuClose");
-														WIM_Options_FilterWindowTitleString:SetText(WIM_LOCALIZED_TEXT_ADD_FILTER);
+														WIM_Options_FilterWindowTitleString:SetText(WIM_LOCALIZED_OPTIONS_FILTERS_FILTER_ADD);
 														WIM_Options_FilterWindow_Name:SetText("");
 														WIM_Options_FilterWindow.prevName = "";
 														WIM_Options_FilterWindow.theMode = "add";
@@ -2773,7 +3143,7 @@
 													</OnClick>
 												</Scripts>
 											</Button>
-											<Button name="$parentRemove" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_REMOVE">
+											<Button name="$parentRemove" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_REMOVE">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2795,7 +3165,7 @@
 													</OnClick>
 												</Scripts>
 											</Button>
-											<Button name="$parentEdit" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_EDIT">
+											<Button name="$parentEdit" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_FILTERS_EDIT">
 												<Size>
 													<AbsDimension x="85" y="22"/>
 												</Size>
@@ -2810,11 +3180,11 @@
 													<OnClick>
 														PlaySound("igMainMenuClose");
 														if(WIM_Filter_Selected ~= "") then
-															WIM_Options_FilterWindowTitleString:SetText(WIM_LOCALIZED_TEXT_EDIT_FILTER);
+															WIM_Options_FilterWindowTitleString:SetText(WIM_LOCALIZED_OPTIONS_FILTERS_FILTER_EDIT);
 															WIM_Options_FilterWindow.theMode = "edit";
 															WIM_Options_FilterWindow.prevName = WIM_Filter_Selected;
 															WIM_Options_FilterWindow_Name:SetText(WIM_Filter_Selected);
-															if(WIM_Filters[WIM_Filter_Selected] == WIM_LOCALIZED_TEXT_IGNORE) then
+															if(WIM_Filters[WIM_Filter_Selected] == "Ignore") then
 																WIM_Options_FilterWindow_ActionIgnore:SetChecked(true);
 															else
 																WIM_Options_FilterWindow_ActionBlock:SetChecked(true);
@@ -2866,7 +3236,7 @@
 								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ENABLE_HISTORY">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_ENABLE">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -2915,7 +3285,7 @@
 								<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECORD_EVERYONE">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_RECORD_ALL">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -2965,7 +3335,7 @@
 								<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECORD_FRIENDS">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_RECORD_FRIENDS">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3015,7 +3385,7 @@
 								<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECORD_GUILD">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_RECORD_GUILD">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3057,7 +3427,7 @@
 								</Anchors>
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_INCOMING_MESSAGES">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_MESSAGES_IN">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3089,7 +3459,7 @@
 								</Anchors>
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_OUTGOING_MESSAGES">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_MESSAGES_OUT">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3129,7 +3499,7 @@
 								<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_HISTORY_IN_MESSAGES">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_SHOW">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3179,7 +3549,7 @@
 								<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_SET_MAX_MESSAGES">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_MAX">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3229,7 +3599,7 @@
 								<DisabledCheckedTexture file="Interface\Buttons\UI-CheckBox-Check-Disabled" />
 								<Layers>
 									<Layer level="OVERLAY">
-										<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_DELETE_MESSAGES">
+										<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_HISTORY_DELETE">
 											<Anchors>
 												<Anchor point="LEFT">
 													<Offset>
@@ -3330,7 +3700,7 @@
 									</OnLeave>
 								</Scripts>
 							</Frame>
-							<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_RECORDED_USERS">
+							<Button name="$parentColumnHeader1" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_HISTORY_TAB_USERS">
 								<Anchors>
 									<Anchor point="TOPLEFT">
 										<Offset>
@@ -3348,7 +3718,7 @@
 									</OnClick>
 								</Scripts>
 							</Button>
-							<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_TEXT_SAVED_MESSAGES">
+							<Button name="$parentColumnHeader2" inherits="WhoFrameColumnHeaderTemplate" text="WIM_LOCALIZED_OPTIONS_HISTORY_TAB_MESSAGES">
 								<Anchors>
 									<Anchor point="TOPLEFT" relativeTo="$parentColumnHeader1" relativePoint="TOPRIGHT">
 										<Offset>
@@ -3445,7 +3815,7 @@
 											</Anchor>
 										</Anchors>
 									</Button>
-									<Button name="$parentDeleteUser" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_DELETE_USER">
+									<Button name="$parentDeleteUser" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_HISTORY_DELETE_USER">
 										<Size>
 											<AbsDimension x="90" y="22"/>
 										</Size>
@@ -3467,7 +3837,7 @@
 											</OnClick>
 										</Scripts>
 									</Button>
-									<Button name="$parentViewHistory" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_VIEW_HISTORY">
+									<Button name="$parentViewHistory" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OPTIONS_HISTORY_VIEW_USER">
 										<Size>
 											<AbsDimension x="100" y="22"/>
 										</Size>
@@ -3587,6 +3957,7 @@
 				PlaySound("igMainMenuClose");
 				GameTooltip:Hide();
 				WIM_WindowAnchor:Hide();
+				DropDownList1:Hide();
 			</OnHide>
 			<OnDragStart>
 				this:StartMoving();
@@ -3637,7 +4008,7 @@
 				</Anchors>
 				<TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
 				</Texture>
-				<FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_NEW_ALIAS">
+				<FontString name="$parentTitleString" inherits="GameFontNormal" text="Add New Alias">
 					<Size>
 						<AbsDimension x="140" y="0" />
 					</Size>
@@ -3675,7 +4046,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_CHARACTER_NAME">
+						<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_ALIAS_WINDOW_LABEL1">
 							<Anchors>
 								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 									<Offset>
@@ -3708,7 +4079,7 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<FontString font="Fonts\ARIALN.TTF">
+						<FontString inherits="ChatFontNormal">
 							<FontHeight>
 								<AbsValue val="16" />
 							</FontHeight>
@@ -3742,7 +4113,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_CHARACTER_ALIAS">
+						<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_ALIAS_WINDOW_LABEL2">
 							<Anchors>
 								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 									<Offset>
@@ -3761,7 +4132,7 @@
 								</Offset>
 							</Shadow>
 						</FontString>
-						<FontString name="WIM_Options_AliasWindow_Error" font="Fonts\FRIZQT__.TTF" text="">
+						<FontString name="WIM_Options_AliasWindow_Error" inherits="GameFontNormal" text="">
 							<Anchors>
 								<Anchor point="TOPLEFT" relativeTo="$parent" relativePoint="BOTTOMLEFT">
 									<Offset>
@@ -3794,7 +4165,7 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<FontString font="Fonts\ARIALN.TTF">
+						<FontString inherits="ChatFontNormal">
 							<FontHeight>
 								<AbsValue val="16" />
 							</FontHeight>
@@ -3820,7 +4191,7 @@
 		
 		
 		
-			<Button name="$parentCancel" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_CANCEL">
+			<Button name="$parentCancel" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_CANCEL">
 				<Size>
 					<AbsDimension x="85" y="28"/>
 				</Size>
@@ -3838,7 +4209,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentOK" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_OK">
+			<Button name="$parentOK" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OK">
 				<Size>
 					<AbsDimension x="85" y="28"/>
 				</Size>
@@ -3913,7 +4284,7 @@
 				</Anchors>
 				<TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
 				</Texture>
-				<FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_ADD_FILTER">
+				<FontString name="$parentTitleString" inherits="GameFontNormal" text="Add New Filter">
 					<Size>
 						<AbsDimension x="140" y="0" />
 					</Size>
@@ -3935,7 +4306,7 @@
 						</Offset>
 					</Shadow>
 				</FontString>
-				<FontString name="$parentActionString" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_PERFORM_ACTION">
+				<FontString name="$parentActionString" inherits="GameFontNormal" text="WIM_LOCALIZED_FILTER_WINDOW_LABEL2">
 					<Size>
 						<AbsDimension x="200" y="0" />
 					</Size>
@@ -3957,7 +4328,7 @@
 						</Offset>
 					</Shadow>
 				</FontString>
-				<FontString name="WIM_Options_FilterWindow_Error" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_EXAMPLE_ERROR_MESSAGE" justifyH="LEFT">
+				<FontString name="WIM_Options_FilterWindow_Error" inherits="GameFontNormal" text="ERROR: Example Error Message" justifyH="LEFT">
 					<Size>
 						<AbsDimension x="300" y="0" />
 					</Size>
@@ -3995,7 +4366,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_KEY_PHRASE_FILTER">
+						<FontString inherits="GameFontNormal" text="WIM_LOCALIZED_FILTER_WINDOW_LABEL1">
 							<Anchors>
 								<Anchor point="BOTTOMLEFT" relativeTo="$parent" relativePoint="TOPLEFT">
 									<Offset>
@@ -4028,7 +4399,7 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<FontString font="Fonts\ARIALN.TTF">
+						<FontString inherits="ChatFontNormal">
 							<FontHeight>
 								<AbsValue val="16" />
 							</FontHeight>
@@ -4067,7 +4438,7 @@
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_IGNORE">
+						<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_FILTER_IGNORE">
 							<Anchors>
 								<Anchor point="LEFT">
 									<Offset>
@@ -4116,7 +4487,7 @@
 				<CheckedTexture file="Interface\Buttons\UI-CheckBox-Check" />
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_BLOCK">
+						<FontString name="$parentText" inherits="GameFontNormal" text="WIM_LOCALIZED_OPTIONS_FILTER_BLOCK">
 							<Anchors>
 								<Anchor point="LEFT">
 									<Offset>
@@ -4151,7 +4522,7 @@
 		
 		
 		
-			<Button name="$parentCancel" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_CANCEL">
+			<Button name="$parentCancel" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_CANCEL">
 				<Size>
 					<AbsDimension x="85" y="28"/>
 				</Size>
@@ -4169,7 +4540,7 @@
 					</OnClick>
 				</Scripts>
 			</Button>
-			<Button name="$parentOK" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_OK">
+			<Button name="$parentOK" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_OK">
 				<Size>
 					<AbsDimension x="85" y="28"/>
 				</Size>
@@ -4259,7 +4630,7 @@
 			</OnDragStop>
 			<OnEnter>
 				GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
-				GameTooltip:SetText(WIM_LOCALIZED_TEXT_SET_LOCATION_DESCRIPTION);
+				GameTooltip:SetText(WIM_LOCALIZED_OPTIONS_TOOLTIP_MSG_SPAWN);
 			</OnEnter>
 			<OnLeave>
 				GameTooltip:Hide();
@@ -4320,7 +4691,7 @@
 						</Anchor>
 					</Anchors>
 				</Texture>
-				<FontString name="$parentUser" font="Fonts\FRIZQT__.TTF" text="Pazza">
+				<FontString name="$parentUser" inherits="GameFontNormal" text="Pazza">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentIconNew" relativePoint="TOPRIGHT">
 							<Offset>
@@ -4339,7 +4710,7 @@
 						</Offset>
 					</Shadow>
 				</FontString>
-				<FontString name="$parentStatus" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_NO_MESSAGES">
+				<FontString name="$parentStatus" inherits="GameFontNormal" text="No new messages.">
 					<Anchors>
 						<Anchor point="TOPLEFT" relativeTo="$parentIconNew" relativePoint="TOPRIGHT">
 							<Offset>
@@ -4358,7 +4729,7 @@
 						</Offset>
 					</Shadow>
 				</FontString>
-				<FontString name="$parentCount" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_RECENT_CONVERSATION">
+				<FontString name="$parentCount" inherits="GameFontNormal" text="Recent Conversation 1 or 20">
 					<Anchors>
 						<Anchor point="BOTTOM">
 							<Offset>
@@ -4432,7 +4803,7 @@
 				</Anchors>
 				<TexCoords left="0.2" right="0.8" top="0" bottom="0.6" />
 				</Texture>
-				<FontString name="$parentTitleString" font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_DOCUMENTATION">
+				<FontString name="$parentTitleString" inherits="GameFontNormal" text="WIM_LOCALIZED_HELP_WINDOW_TITLE">
 					<Size>
 						<AbsDimension x="140" y="0" />
 					</Size>
@@ -4494,7 +4865,7 @@
 					</Anchor>
 				</Anchors>
 			</Frame>
-			<Button name="$parentTab1" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_DESCRIPTION" alpha=".8">
+			<Button name="$parentTab1" inherits="TabButtonTemplate" text="WIM_LOCALIZED_HELP_WINDOW_DESCRIPTION" alpha=".8">
 				<Anchors>
 					<Anchor point="BOTTOMLEFT" relativeTo="$parentFrame" relativePoint="TOPLEFT">
 						<Offset>
@@ -4514,7 +4885,7 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="$parentTab2" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_VERSION_HISTORY" alpha=".8">
+			<Button name="$parentTab2" inherits="TabButtonTemplate" text="WIM_LOCALIZED_HELP_WINDOW_VERSION_HISTORY" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentTab1" relativePoint="TOPRIGHT">
 						<Offset>
@@ -4534,7 +4905,7 @@
 					</OnLoad>
 				</Scripts>
 			</Button>
-			<Button name="$parentTab3" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_KNOW" alpha=".8">
+			<Button name="$parentTab3" inherits="TabButtonTemplate" text="WIM_LOCALIZED_HELP_WINDOW_DID_YOU_KNOW" alpha=".8">
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentTab2" relativePoint="TOPRIGHT">
 						<Offset>
@@ -4558,7 +4929,7 @@
 			
 			
 			
-			<Button name="$parentTabCredits" inherits="TabButtonTemplate" text="WIM_LOCALIZED_TEXT_CREDITS" alpha=".8">
+			<Button name="$parentTabCredits" inherits="TabButtonTemplate" text="WIM_LOCALIZED_HELP_WINDOW_CREDITS" alpha=".8">
 				<Anchors>
 					<Anchor point="BOTTOMRIGHT" relativeTo="$parentFrame" relativePoint="TOPRIGHT">
 						<Offset>
@@ -4613,7 +4984,7 @@
 										</Offset>
 									</Anchor>
 								</Anchors>
-								<FontString font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+								<FontString inherits="GameFontNormal" justifyH="LEFT">
 									<FontHeight>
 										<AbsValue val="12" />
 									</FontHeight>
@@ -4637,7 +5008,7 @@
 		</Frames>
 		<Scripts>
 			<OnLoad>
-				tinsert(UISpecialFrames,this:GetName());
+				--tinsert(UISpecialFrames,this:GetName());
 				this:RegisterForDrag("LeftButton");
 			</OnLoad>
 			<OnShow>

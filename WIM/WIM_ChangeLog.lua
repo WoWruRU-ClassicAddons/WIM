@@ -1,5 +1,90 @@
 WIM_CHANGE_LOG = [[
-Version 1.3.1 (10-17-2006)|cffffffff
+Version 1.5.10 (03-07-2007)|cffffffff
+[*] - Revised event handler. Should correct whisper catching issue.
+[*] - Now validates window data before creating. Prevents errors.
+[*] - Fixed Ace/WIM compatibilty issue with linking items.
+
+|rVersion 1.5.6 (03-06-2007)|cffffffff
+[*] - Linking stackable items will no longer show split dialogue.
+[+] - Added "Add Friend" shortcut to shortcut bar. (Only if not a friend).
+[+] - Added an icon to the shortcut bar where you can see the users location.
+[*] - Defined filters to catch GuildAds, Ace, CT and Metamap messages.
+[+] - Added option to select different time stamp formats.
+[+] - Added interface for SpamSentry.
+[*] - Recoded event hooks by using ChatFrame_MessageEventHandler.
+[*] - Modified filter checking to use less resources.
+[+] - Added options to auto close idle messages (friends and non-friends).
+[+] - Added "(Show All)" to user list in history viewer.
+[+] - Added ability to export history. (raw text & html).
+[+] - Added flood control. (10 second cool down on duplicate messages).
+[+] - Right-Clicking minimap icon now shows "WIM Tools" menu.
+[+] - Added option to turn off "WIM Tools" menu from minimap.
+[*] - LootLink (Standard) now works with WIM.
+[+] - WIM is now functional with AdvancedTradeSkillWindow.
+[+] - Added option to ignore arrow keys while typing messages.
+
+|rVersion 1.4.66 (01-09-2007)|cffffffff
+[*] - Updated to work with 2.0.3 patch.
+
+|rVersion 1.4.58 (12-30-2006)|cffffffff
+[*] - Fixed error when showing all and hiding all message windows.
+[*] - Fixed error with linking from auction house.
+[*] - Updated Korean translations.
+[+] - 'Enter' with no message to be sent will now drop focus.
+[*] - Fixed problem with whispering users with special characters.
+[*] - Modified slash command handler as suggested by 'egingell'.
+[+] - Updated default filters to include GuildAds 2.0.
+[+] - On version upgrades, default filters are automatically reloaded.
+
+|rVersion 1.4.50 (12-08-2006)|cffffffff
+[!] - WIM is now updated to work with WoW 2.0 Interface.
+[-] - Removed incompatible buttons from shortcut bar. Ideas for new ones?
+[*] - Hooking structure revamped due to new blizz function ChatEdit_InsertLink().
+
+|rVersion 1.4.16 (11-14-2006)|cffffffff
+[+] - Added Traditional Chinese Translations (Thanks Junxian).
+[+] - Added new option interface for "Show Shortcutbar"
+[+] - You can now choose which buttons to show on shortcut bar.
+[+] - Added options for FuBar plugin.
+[*] - FuBar plugin should now retain settings.
+[*] - Users are now case insensitive, preventing mulitple windows per user.
+[*] - Intercepting /whisper commands now follows popup combat rules.
+[*] - Corrected issue where outbound popups still popped while in combat.
+[*] - Corrected possible bug preventing linking to party/guild/raid chat.
+
+|rVersion 1.4.5 (10-31-2006)|cffffffff
+[*] - FuBar plugin fix. (Added SetFontSize() method).
+
+|rVersion 1.4.4 (10-31-2006)|cffffffff
+[+] - Added German Translations (Thanks Corrilian).
+[*] - Made changes to the way FuBar2 Plugin loads (Hopefully a fix).
+[*] - Fixed bug that caused error message when linking from ItemSync.
+[*] - Fixed bug that caused EngInventory to open split when linking.
+[+] - Added Spanish Translations (Thanks AlbertQ).
+[+] - Added Simplified Chinese Translations (Thanks Annie).
+[+] - Added French Translations (Thanks Khellendros).
+[*] - Removed some depricated minimap menu code. (Thanks Soin).
+[*] - Attempt to correct issue with Polish and Russian fonts.
+[*] - Tweaked chat fonts to be as backward compatible as possible.
+[*] - Reworked SuperInspect, compatibilty. Corrected linking issues.
+
+|rVersion 1.4.3 (10-24-2006)|cffffffff
+[+] - All english text can now be localized!
+[*] - All WIM strings now use system font declarations. (For localizing).
+[+] - Added some problematic addons to Optional Dependency List. (Fix?).
+[-] - Removed some depricated code and objects from Titan plugin.
+[*] - Fixed bug where slash commands were intercepted when WIM was disabled.
+[*] - Changed intercept option position to be more intuitive.
+[+] - You can now link items from the vendor window.
+[+] - You can now link quests from your quest log.
+[+] - You can now link quest items from a quest giver.
+[+] - You can now link quest rewards from your quest log.
+[+] - You can now link items from the auction house.
+[+] - Added FuBar 2.0 Plugin support.
+[+] - Added Korean Translations (Thanks Bitz).
+[+] - Added support for ItemSync.
+
+|rVersion 1.3.1 (10-17-2006)|cffffffff
 [+] - Created new minimap icon menu. No longer using Blizzards Drop Down Menu.
 [+] - You can now close conversations from the minimap icon menu.
 [*] - Made required code changes for titan plugin and new minimap icon menu.
@@ -10,94 +95,14 @@ Version 1.3.1 (10-17-2006)|cffffffff
 [+] - Added support for LootLink.
 [+] - Added support for EngInventory.
 [+] - You can now execute slash commands inside a message window.
+]]
 
-|rVersion 1.2.13 (10-03-2006)|cffffffff
-[*] - Fixed bug that causes error if titan is not loaded.
 
-|rVersion 1.2.12 (10-03-2006)|cffffffff
-[+] - Added support for AtlasLoot.
-[+] - Added option to only keep focus while in a major city.
-[+] - Added option to not show AFK and DND messages.
-[+] - Added option to Enable/Disable use of 'Escape Key' to close windows.
-[+] - Added 'Show' and 'Hide All Messages' key bindings.
-[+] - Added scroll bar to general options tab. (out of room!).
-[*] - Fixed nil error in function WIM_LoadGuildList(). (thanks Misschief).
-[+] - You can now link items from the loot window.
-[+] - Added support for AllInOneInventory.
-[*] - Who window should no longer pop up when finding similar names.
-[*] - Titan is now listed as an optional dependency.
 
-|rVersion 1.2.11 (09-29-2006)|cffffffff
-[*] - Fixed spelling mistake on Windows tab.
-[*] - No longer run /who request on cross-realm users.
-[+] - Get information on cross-realm users from raid info.
-[*] - Message toggle window only shows unique users as intended.
-[+] - Toggling window now brings it to front if behind another window.
-[+] - Toggling windows now auto focuses when message selected.
-[+] - The TAB key now toggles windows while already focused in another window.
-[+] - You can now link items from the inspect screen.
-[+] - You can now link items in SuperInspect.
-[+] - Added "Did you know?" tab in help.
-[+] - Added "Credits" tab in help.
-[+] - Added button to option screen to access help.
 
-|rVersion 1.2.10 (09-26-2006)|cffffffff
-[*] - Made a minor adjustment to window focusing behavior.
-[+] - Modified options window to include aliasing, filtering & History options
-[+] - Added Alias Filtering: (1: replace name; 2: show as comment);
-[+] - Added Keyword/Phrase Filtering: (1: Ignore (by WIM); 2: Block (all together))
-[+] - Added default CT_RABM filter rules.
-[+] - Added history engine and options.
-[+] - Added history viewer.   ( /wim history )
-[*] - Shortcut bar now retains its transparency of 100%.
-[+] - Added button to message window to access history if history exists.
-[+] - Added options to set default window position.
-[+] - Added option to Enable/Disable window cascading.
-[+] - Added option to change the direction if window cascading.
-[+] - Added key bindings.
-[+] - Added a key binding to toggle through recent conversations.
-[+] - Added a help screen. ( /wim help )
+--[[
+Things to Do:
 
-|rVersion 1.1.15 (09-19-2006)|cffffffff
-[+] - Added option to show character info (/who requests).
-[+] - Added option to show class icon. (updated default icon).
-[*] - Minimap icon no longer shows on top of all other windows unless its in free moving mode.
-[+] - You can now link items in your character frame.
-[+] - You can now link items from trade skill windows.
-[+] - You can now link items from crafting windows (ex: Enchanting)
-[+] - Added option to set class color to title bar text.
-[+] - Added option to display timestamps.
-[+] - Added option to Enable/Disable WIM.
-[+] - Added shortcut bar (and appropriate options).
-[+] - Added detailed character info. (Guild, level, race, class).
 
-|rVersion 1.1.4 (09-15-2006)|cffffffff
-[+] - Added built-in Titan plugin.
-[*] - Transparency no longer affects chat text.
-[*] - Minimap menu now opens to the left the way intended.
-[+] - Created new graphics for message window.
-[+] - Recreated message window frame - now sizable!
-[+] - Reorganized option window & created tab for window options
-[-] - Removed option 'Show minimap tooltip'.
-[+] - Added options 'Show tooltips'.
-[*] - Reworded option to pop up when receiving replies (worked as intended).
-[*] - Windows can no longer positioned outside of the interface.
-[+] - Added option to sort conversation list alphabetically (otherwise sort by order received).
-[+] - Added options to change height and width of message windows.
-[+] - Message windows can now be dragged by the chat frame.
-[+] - Clicking chat frame will now set focus to message box.
-[+] - Added the ability to close a conversation.
-[+] - Added freely movable minimap icon. (Move anywhere on your screen).
-[+] - Shift-Click scroll button now pages up & down.
-[+] - Shift-ScrollWheel now pages up and down.
-[+] - Added option to disable popups when in combat.
-[+] - Added class icons to message window.
-
-|rVersion 1.0.19 (09-12-2006) |cffffffff
-[*] - Fixed the problem with in game languages (Common/Orcish). This should also resolve problems with other lingual wow interfaces as well. 
-[*] - Recoded some function hooks to avoid receiving duplicate messages due to addon conflicts. 
-
-|rVersion 1.0.18 (09-12-2006) |cffffffff
-[!] - Initial public release.
 
 ]]

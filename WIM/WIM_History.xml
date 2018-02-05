@@ -1,13 +1,6 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
 	<Script file="WIM_History.lua"/> 
-	<Script file="localization.lua"/>
-	<Script file="localization.ru.lua"/>
-	<Script file="localization.cn.lua"/>
-	<Script file="localization.de.lua"/>
-	<Script file="localization.fr.lua"/>
-	<Script file="localization.kr.lua"/>
-	<Script file="localization.tw.lua"/>
 
 	<Button name="WIM_HistoryUsersButtonTemplate" virtual="true">
 		<Size>
@@ -133,7 +126,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_HISTORY_VIEWER">
+						<FontString name="$parentText"  inherits="GameFontNormal" text="WIM_LOCALIZED_HISTORY_TITLE">
 							<Anchors>
 								<Anchor point="CENTER">
 									<Offset>
@@ -178,6 +171,28 @@
 							</OnClick>
 						</Scripts>
 					</Button>
+					<Frame name="WIM_HistoryExportFormatMenu" inherits="UIDropDownMenuTemplate" enableMouse="true">
+						<Anchors>
+							<Anchor point="TOPRIGHT" relativeTo="$parentExitButton" relativePoint="TOPLEFT">
+								<Offset>
+									<AbsDimension x="48" y="-35"/>
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<!-- Ensure that the correct information is displayed
+							Also setup the different options and function for selecting options-->
+							<OnShow>
+								WIM_History_ExportFormat_OnShow();
+							</OnShow>
+							<OnLeave>
+								GameTooltip:Hide();
+							</OnLeave>
+						</Scripts>
+					</Frame>
+					
+					
+					
 				</Frames>
 			</Frame>
 			<Frame name="$parentNameList" inherits="WIM_Options_PanelTemplate">
@@ -210,7 +225,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_USERS">
+								<FontString name="$parentText"  inherits="GameFontNormal" text="WIM_LOCALIZED_HISTORY_USERS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -421,7 +436,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_FILTERS">
+								<FontString name="$parentText"  inherits="GameFontNormal" text="WIM_LOCALIZED_HISTORY_FILTERS">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -565,7 +580,7 @@
 						</Anchors>
 						<Layers>
 							<Layer level="OVERLAY">
-								<FontString name="$parentText"  font="Fonts\FRIZQT__.TTF" text="WIM_LOCALIZED_TEXT_MESSAGES">
+								<FontString name="$parentText"  inherits="GameFontNormal" text="WIM_LOCALIZED_HISTORY_MESSAGES">
 									<Anchors>
 										<Anchor point="CENTER">
 											<Offset>
@@ -600,7 +615,7 @@
 								</Offset>
 							</Anchor>
 						</Anchors>
-						<FontString font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+						<FontString inherits="ChatFontNormal" justifyH="LEFT">
 							<FontHeight>
 								<AbsValue val="12" />
 							</FontHeight>
@@ -709,6 +724,59 @@
 			</Frame>
 		
 		
+			<ScrollFrame name="WIM_HistoryViewerExportFormat" inherits="UIPanelScrollFrameTemplate" hidden="true">
+				<Anchors>
+					<Anchor point="TOPLEFT" relativeTo="WIM_HistoryFrameMessageListScrollingMessageFrame" relativePoint="TOPLEFT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+					<Anchor point="BOTTOMRIGHT" relativeTo="WIM_HistoryFrameMessageListScrollingMessageFrame" relativePoint="BOTTOMRIGHT">
+						<Offset>
+							<AbsDimension x="0" y="0"/>
+						</Offset>
+					</Anchor>
+				</Anchors>
+				<ScrollChild>
+					<EditBox name="$parentText" multiLine="true" enableMouse="true" frameStrata="DIALOG" toplevel="true">
+						<Size>
+							<AbsDimension x="360" y="304"/>
+						</Size>
+						<Anchors>
+							<Anchor point="TOPLEFT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+							<Anchor point="BOTTOMRIGHT">
+								<Offset>
+									<AbsDimension x="0" y="0" />
+								</Offset>
+							</Anchor>
+						</Anchors>
+						<Scripts>
+							<OnTextChanged>
+								ScrollingEdit_OnTextChanged()
+							</OnTextChanged>
+							<OnCursorChanged>
+								ScrollingEdit_OnCursorChanged(arg1, arg2, arg3, arg4)
+							</OnCursorChanged>
+							<OnUpdate>
+								ScrollingEdit_OnUpdate()
+							</OnUpdate>
+							<OnEscapePressed>
+								this:Hide();
+								this:Show();
+							</OnEscapePressed>
+							<OnLoad>
+								
+							</OnLoad>
+						</Scripts>
+						<FontString inherits="ChatFontNormal"/>
+					</EditBox>
+				</ScrollChild>
+			</ScrollFrame>
+		
 		
 		
 		
@@ -728,7 +796,8 @@
 			</OnDragStop>
 			<OnShow>
 				PlaySound("igMainMenuOpen");
-				WIM_HistoryFrameMessageListScrollingMessageFrame:SetFont("Fonts\\FRIZQT__.TTF",WIM_Data.fontSize);
+				local Path, _, Flags = WIM_HistoryFrameMessageListScrollingMessageFrame:GetFont();
+				WIM_HistoryFrameMessageListScrollingMessageFrame:SetFont(Path,WIM_Data.fontSize+2, Flags);
 				WIM_HistoryViewNameScrollBar_Update();
 				WIM_HistoryViewFiltersScrollBar_Update();
 			</OnShow>

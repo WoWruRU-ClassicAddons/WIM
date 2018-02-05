@@ -1,12 +1,13 @@
 <Ui xmlns="http://www.blizzard.com/wow/ui/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.blizzard.com/wow/ui/ ..\FrameXML\UI.xsd">
 
 	<Script file="localization.lua"/>
-	<Script file="localization.ru.lua"/>
+	<Script file="localization.es.lua"/>
 	<Script file="localization.cn.lua"/>
 	<Script file="localization.de.lua"/>
 	<Script file="localization.fr.lua"/>
 	<Script file="localization.kr.lua"/>
 	<Script file="localization.tw.lua"/>
+	<Script file="localization.ru.lua"/>
 	<Script file="WIM_ChangeLog.lua"/>
 	<Script file="WIM.lua"/> 
 	<Script file="WIM_Hooks.lua"/> 
@@ -16,24 +17,27 @@
 	<Frame name="WIM_Core"> 
 		<Scripts> 
 			<OnLoad> 
+				this.TimeSinceLastUpdate = 0;
 				this:RegisterEvent("VARIABLES_LOADED");
 				this:RegisterEvent("ADDON_LOADED");
-				this:RegisterEvent("CHAT_MSG_AFK");
-				this:RegisterEvent("CHAT_MSG_DND");
-				this:RegisterEvent("CHAT_MSG_WHISPER");
-				this:RegisterEvent("CHAT_MSG_WHISPER_INFORM");
-				this:RegisterEvent("CHAT_MSG_SYSTEM");
-				this:RegisterEvent("TRADE_SKILL_SHOW");
-				this:RegisterEvent("CRAFT_SHOW");
 				this:RegisterEvent("GUILD_ROSTER_UPDATE");
 				this:RegisterEvent("FRIENDLIST_SHOW");
 				this:RegisterEvent("FRIENDLIST_UPDATE");
+				this:RegisterEvent("CHAT_MSG_WHISPER");
+				this:RegisterEvent("CHAT_MSG_WHISPER_INFORM");
+				this:RegisterEvent("CHAT_MSG_AFK");
+				this:RegisterEvent("CHAT_MSG_DND");
+				this:RegisterEvent("CHAT_MSG_SYSTEM");
 				WIM_OnLoad();
 				WIM_SetUpHooks();
 			</OnLoad> 
 			<OnEvent> 
 				WIM_Incoming(event);
+				WIM_ChatFrame_MessageEventHandler(event, true);
 			</OnEvent> 
+			<OnUpdate>
+				WIM_CronTab(arg1);
+			</OnUpdate>
 		</Scripts> 
 	</Frame> 
 
@@ -70,7 +74,7 @@
 				WIM_ShorcutButton_Clicked();
 			</OnClick>
 			<OnEnter>
-				if(WIM_Data.showToolTips == true) then
+				if(WIM_Data.showToolTips == true or this.cmd == "update") then
 					GameTooltip:SetOwner(this, "ANCHOR_RIGHT");
 					GameTooltip:SetText(this.tooltip);
 				end
@@ -120,7 +124,7 @@
 				</Texture>
 			</Layer>
 			<Layer level="OVERLAY">
-				<FontString name="$parentFrom" inherits="GameFontNormalLarge" text="abcdefghijklmnopqrstuvwxyz">
+				<FontString name="$parentFrom" inherits="GameFontNormalLarge" text="">
 					<Anchors>
 						<Anchor point="TOPLEFT">
 							<Offset>
@@ -169,7 +173,7 @@
 					<OnEnter>
 						if(WIM_Data.showToolTips == true) then
 							GameTooltip:SetOwner(this, "ANCHOR_LEFT");
-							GameTooltip:SetText(WIM_LOCALIZED_TEXT_END_CONVERSATION);
+							GameTooltip:SetText(WIM_LOCALIZED_TOOLTIP_SHIFT_CLICK_TO_CLOSE);
 							GameTooltip:SetPoint("BOTTOMRIGHT", this, "TOPRIGHT", 0, 0);
 						end
 					</OnEnter>
@@ -207,7 +211,7 @@
 					<OnEnter>
 						if(WIM_Data.showToolTips == true) then
 							GameTooltip:SetOwner(this, "ANCHOR_LEFT");
-							GameTooltip:SetText(WIM_LOCALIZED_TEXT_CLICK_VIEW_HISTORY);
+							GameTooltip:SetText(WIM_LOCALIZED_TOOLTIP_VIEW_HISTORY);
 							GameTooltip:SetPoint("BOTTOMRIGHT", this, "TOPRIGHT", 0, 0);
 						end
 					</OnEnter>
@@ -290,7 +294,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString font="Fonts\FRIZQT__.TTF" justifyH="LEFT">
+				<FontString inherits="ChatFontNormal" justifyH="LEFT">
 					<FontHeight>
 						<AbsValue val="12" />
 					</FontHeight>
@@ -356,7 +360,7 @@
 				<Anchors>
 					<Anchor point="TOPLEFT" relativeTo="$parentScrollingMessageFrame" relativePoint="BOTTOMLEFT">
 						<Offset>
-							<AbsDimension x="-2" y="-5" />
+							<AbsDimension x="-2" y="-4" />
 						</Offset>
 					</Anchor>
 					<Anchor point="BOTTOMRIGHT">
@@ -365,7 +369,7 @@
 						</Offset>
 					</Anchor>
 				</Anchors>
-				<FontString font="Fonts\ARIALN.TTF">
+				<FontString inherits="ChatFontNormal">
 					<FontHeight>
 						<AbsValue val="14" />
 					</FontHeight>
@@ -380,6 +384,12 @@
 				<Scripts>
 					<OnEnterPressed>
 						local _, tParent = this:GetParent();
+						
+						if(this:GetText() == "") then
+							this:Hide();
+							this:Show();
+							return;
+						end
 						
 						if(strsub(this:GetText(), 1, 1) == "/") then
 							ChatFrameEditBox:SetText(this:GetText());
@@ -489,7 +499,7 @@
 				</Anchors>
 				<Layers>
 					<Layer level="OVERLAY">
-						<FontString name="$parentText" inherits="GameFontNormalLarge" text="WIM_LOCALIZED_TEXT_SURE_TO_IGNORE">
+						<FontString name="$parentText" inherits="GameFontNormalLarge" text="WIM_LOCALIZED_IGNORE_CONFIRM">
 							<Anchors>
 								<Anchor point="CENTER">
 									<Offset>
@@ -512,7 +522,7 @@
 					</EdgeSize>
 				</Backdrop>
 				<Frames>
-					<Button name="$parentYes" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_YES">
+					<Button name="$parentYes" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_YES">
 						<Size>
 							<AbsDimension x="50" y="25"/>
 						</Size>
@@ -531,7 +541,7 @@
 							</OnClick>
 						</Scripts>
 					</Button>
-					<Button name="$parentNo" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_TEXT_NO">
+					<Button name="$parentNo" inherits="UIPanelButtonTemplate" text="WIM_LOCALIZED_NO">
 						<Size>
 							<AbsDimension x="50" y="25"/>
 						</Size>
@@ -553,7 +563,7 @@
 				<Scripts>
 					<OnShow>
 						PlaySound("igMainMenuOpen");
-						getglobal(this:GetName().."Text"):SetText(WIM_LOCALIZED_TEXT_SURE_TO_IGNORE_DESCRIPTION);
+						getglobal(this:GetName().."Text"):SetText(WIM_LOCALIZED_IGNORE_CONFIRM);
 						getglobal(this:GetParent():GetName().."ScrollingMessageFrame"):SetFrameStrata("LOW");
 					</OnShow>
 					<OnHide>
@@ -581,7 +591,7 @@
 				if(WIM_Data.autoFocus == true) then
 					getglobal(this:GetName().."MsgBox"):SetFocus();
 				end
-				WIM_LoadShortcutFrame();
+				--WIM_LoadShortcutFrame(this);
 				WIM_WindowOnShow();
 			</OnShow>
 			<OnHide>
@@ -592,5 +602,6 @@
 			</OnHide>
 		</Scripts>
 	</Frame>
+	
 	
 </Ui>

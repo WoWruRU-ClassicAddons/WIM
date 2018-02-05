@@ -59,23 +59,6 @@
 							</Layer>
 						</Layers>
 					</Frame>
-					<Frame name="WIM_Titan_DropDown" inherits="UIDropDownMenuTemplate" frameStrata="TOOLTIP" toplevel="true" hidden="true">
-						<Size>
-							<AbsDimension x="10" y="10"/>
-						</Size>
-						<Anchors>
-							<Anchor point="TOPLEFT">
-								<Offset>
-									<AbsDimension x="0" y="0"/>
-								</Offset>
-							</Anchor>
-						</Anchors>
-						<Scripts>
-							<OnLoad>
-								WIM_Titan_InitMenu();
-							</OnLoad>
-						</Scripts>
-					</Frame>
 				</Frames>
 			</Button>
 		</Frames>

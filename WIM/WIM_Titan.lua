@@ -48,7 +48,7 @@ function WIM_Titan_GetButtonText()
 		end
 	end
 	
-	return msgColor.."Messages: ", "|cffffffff"..WIM_NewMessageCount;
+	return msgColor..WIM_LOCALIZED_TITAN_MESSAGES, "|cffffffff"..WIM_NewMessageCount;
 end
 
 function WIM_Titan_GetToolTipText()
@@ -73,6 +73,3 @@ function WIM_TitanButton_OnShow()
 	end
 end
 
-function WIM_Titan_InitMenu()
-	UIDropDownMenu_Initialize(this, WIM_Icon_DropDown_Init, "MENU");
-end
