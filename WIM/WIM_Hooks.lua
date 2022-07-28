@@ -308,11 +308,13 @@ function WIM_SetUpHooks()
 	WIM_SetItemRef_orig = SetItemRef;
 	SetItemRef = function(link, text, button) if(not WIM_isLinkURL(link)) then WIM_SetItemRef_orig(link, text, button); end; WIM_SetItemRef(link, text, button); end;
 
+	--Hook ContainerFrameItemButton_OnClick
+	WIM_ContainerFrameItemButton_OnClick_orig = ContainerFrameItemButton_OnClick;
+	ContainerFrameItemButton_OnClick = function(button, ignoreModifiers) WIM_ContainerFrameItemButton_OnClick_orig(button, ignoreModifiers); WIM_ItemButton_OnClick(button, ignoreModifiers); end;
 	
-
 	--Hook AtlasLoot
-	WIM_AtlasLootItem_OnClick_orig = AtlasLootItem_OnClick;
-	AtlasLootItem_OnClick = WIM_AtlasLootItem_OnClick;
+	WIM_AtlasLootItem_OnClick_orig = AtlasLootItem_OnClick
+	AtlasLootItem_OnClick = WIM_AtlasLootItem_OnClick
 	
 	--Hook AllInOneInventory
 	WIM_AllInOneInventoryFrameItemButton_OnClick_orig = AllInOneInventoryFrameItemButton_OnClick;
